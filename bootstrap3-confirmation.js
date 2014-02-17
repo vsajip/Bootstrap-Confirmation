@@ -91,21 +91,21 @@
     var options	    = that.options
     
     $btnOk.addClass(this.getBtnOkClass())
-	  .html(this.getBtnOkLabel())
-	  .prepend($('<i></i>').addClass(this.getBtnOkIcon()), " ")
-	  .attr('href', this.getHref())
-	  .attr('target', this.getTarget())
-	  .one('click', function() {
-	    options.onConfirm
-	    that.leave(that)
+      .html(this.getBtnOkLabel())
+      .prepend($('<i></i>').addClass(this.getBtnOkIcon()), " ")
+      .attr('href', this.getHref())
+      .attr('target', this.getTarget())
+      .one('click', function() {
+        options.onConfirm()
+        that.leave(that)
 	  })
     
     $btnCancel.addClass(this.getBtnCancelClass())
 	      .html(this.getBtnCancelLabel())
 	      .prepend($('<i></i>').addClass(this.getBtnCancelIcon()), " ")      
 	      .one('click', function(){
-		options.onCancel
-		that.leave(that)
+          options.onCancel()
+          that.leave(that)
 	      })
     
     $tip.find('.popover-title')[this.options.html ? 'html' : 'text'](title)
