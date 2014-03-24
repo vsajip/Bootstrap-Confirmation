@@ -19,6 +19,7 @@
     background:#3A1B43;
     background:linear-gradient(to right, #080331, #673051);
     color:white;
+    position:relative;
   }
   .jumbotron:after {
     content:'';
@@ -157,6 +158,17 @@
 
       <p>Recommend way to use:</p>
       <pre>$('[data-toggle="confirmation"]').confirmation(options)</pre>
+      
+      <div class="bs-callout bs-callout-danger">
+        <h4>Declaration order</h4>
+        <p>Confirmation tries to cancel the default event of the target and trigger it when the "Ok" button is clicked. However, in order to have the good behavior, the plugin must be initialized <b>before</b> manually attaching event listener (with <code>$.on()</code>).</p>
+        <p>If this is not possible, you could listen the <code>confirmed.bs.confirmation</code> or use the <code>onConfirm</code> callback.</p>
+      </div>
+      
+      <div class="bs-callout bs-callout-info">
+        <h4>About links</h4>
+        <p>If Confirmation is attached to a <code>&lt;a&gt;</code> tag, the <code>href</code> attribute will be removed and moved to the "Ok" button.</p>
+      </div>
 
       <h3>Options</h3>
       <p>Options can be passed via data attributes or JavaScript plain object. For data attributes, append the option name to <code>data-</code>, as in <code>data-title=""</code>.</p>
