@@ -1,14 +1,18 @@
 {
   "name": "Bootstrap-Confirmation",
-  "version": "0.0.2",
-  "homepage": "https://github.com/ethaizone/Bootstrap-Confirmation",
+  "version": "2.0.0",
+  "homepage": "https://github.com/mistic100/Bootstrap-Confirmation",
   "authors": [
-    "ethaizone"
+    "ethaizone",
+    "mistic100"
   ],
   "description": "bootstrap-confirmation",
   "main": "./bootstrap-confirmation.js",
   "keywords": [
     "confirmation"
   ],
-  "license": "MIT"
+  "dependencies" : {
+    "bootstrap":  "3.x.x"
+  },
+  "license": "Apache"
 }
