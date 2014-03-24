@@ -3,8 +3,4 @@ Bootstrap-Confirmation
 
 Javascript plug-in for Twitter Bootstrap. Requires Bootstrap Popover.
 
-
-Todo
-====
-
-- Updated doc
+[Documentation](http://mistic100.github.io/Bootstrap-Confirmation/)
