@@ -18,7 +18,6 @@
  * limitations under the License.
  * ======================================================================== */
 
-
 +function ($) {
   'use strict';
 
@@ -88,20 +87,14 @@
     popout: false,
     singleton: false,
     target: '_self',
-    onConfirm: $.noop,
-    onCancel: $.noop,
-    btn: {
-      ok: {
-        class: 'btn-xs btn-primary',
-        icon: 'glyphicon glyphicon-ok',
-        label: 'Yes'
-      },
-      cancel: {
-        class: 'btn-xs btn-default',
-        icon: 'glyphicon glyphicon-remove',
-        label: 'No'
-      }
-    },
+    onconfirm: $.noop,
+    oncancel: $.noop,
+    btnokclass: 'btn-xs btn-primary',
+    btnokicon: 'glyphicon glyphicon-ok',
+    btnoklabel: 'Yes',
+    btncancelclass: 'btn-xs btn-default',
+    btncancelicon: 'glyphicon glyphicon-remove',
+    btncancellabel: 'No',
     template:
       '<div class="popover confirmation">' +
         '<div class="arrow"></div>' +
@@ -127,15 +120,15 @@
     var that    = this;
     var $tip    = this.tip();
     var title   = this.getTitle();
-    var content = this.getContent();
+	var o		= this.options;
 
-    $tip.find('.popover-title')[this.options.html ? 'html' : 'text'](title);
+    $tip.find('.popover-title')[o.html ? 'html' : 'text'](title);
 
     // configure 'ok' button
     $tip.find('[data-apply="confirmation"]')
-      .addClass(this.getBtnOkClass())
-      .html(this.getBtnOkLabel())
-      .prepend($('<i></i>').addClass(this.getBtnOkIcon()), ' ')
+      .addClass(o.btnokclass)
+      .html(o.btnoklabel)
+      .prepend($('<i></i>').addClass(o.btnokicon), ' ')
       .off('click')
       .one('click', function(e) {
         that.getOnConfirm.call(that).call(that.$element);
@@ -144,18 +137,18 @@
       });
 
     // add href to confirm button if needed
-    if (this.options.href) {
+    if (o.href) {
       $tip.find('[data-apply="confirmation"]').attr({
-        href: this.options.href,
-        target: this.options.target
+        href: o.href,
+        target: o.target
       });
     }
 
     // configure 'cancel' button
     $tip.find('[data-dismiss="confirmation"]')
-      .addClass(this.getBtnCancelClass())
-      .html(this.getBtnCancelLabel())
-      .prepend($('<i></i>').addClass(this.getBtnCancelIcon()), ' ')
+      .addClass(o.btncancelclass)
+      .html(o.btncancellabel)
+      .prepend($('<i></i>').addClass(o.btncancelicon), ' ')
       .off('click')
       .one('click', function(e) {
         that.getOnCancel.call(that).call(that.$element);
@@ -172,58 +165,6 @@
     }
   }
 
-
-  // CONFIRMATION CONFIG GETTERS
-  // ===============================
-
-  Confirmation.prototype.getBtnOkClass = function() {
-    var $e = this.$element;
-    var o = this.options;
-
-    return $e.attr('data-btn-ok-class')
-      || (typeof o.btn.ok.class == 'function' ? o.btn.ok.class.call($e[0]) : o.btn.ok.class);
-  }
-
-  Confirmation.prototype.getBtnOkIcon = function() {
-    var $e = this.$element;
-    var o = this.options;
-
-    return $e.attr('data-btn-ok-icon')
-      || (typeof o.btn.ok.icon == 'function' ? o.btn.ok.icon.call($e[0]) : o.btn.ok.icon);
-  }
-
-  Confirmation.prototype.getBtnOkLabel = function() {
-    var $e = this.$element;
-    var o = this.options;
-
-    return $e.attr('data-btn-ok-label')
-      || (typeof o.btn.ok.label == 'function' ? o.btn.ok.label.call($e[0]) : o.btn.ok.label);
-  }
-
-  Confirmation.prototype.getBtnCancelClass = function() {
-    var $e = this.$element;
-    var o = this.options;
-
-    return $e.attr('data-btn-cancel-class')
-      || (typeof o.btn.cancel.class == 'function' ? o.btn.cancel.class.call($e[0]) : o.btn.cancel.class);
-  }
-
-  Confirmation.prototype.getBtnCancelIcon = function() {
-    var $e = this.$element;
-    var o = this.options;
-
-    return $e.attr('data-btn-cancel-icon')
-      || (typeof o.btn.cancel.icon == 'function' ? o.btn.cancel.icon.call($e[0]) : o.btn.cancel.icon);
-  }
-
-  Confirmation.prototype.getBtnCancelLabel = function() {
-    var $e = this.$element;
-    var o = this.options;
-
-    return $e.attr('data-btn-cancel-label')
-      || (typeof o.btn.cancel.label == 'function' ? o.btn.cancel.label.call($e[0]) : o.btn.cancel.label);
-  }
-
   Confirmation.prototype.getOnConfirm = function() {
     var $e = this.$element;
     var o = this.options;
@@ -232,7 +173,7 @@
       return getFunctionFromString($e.attr('data-onconfirm'));
     }
     else {
-      return o.onConfirm;
+      return o.onconfirm;
     }
   }
 
@@ -244,7 +185,7 @@
       return getFunctionFromString($e.attr('data-oncancel'));
     }
     else {
-      return o.onCancel;
+      return o.oncancel;
     }
   }
 
