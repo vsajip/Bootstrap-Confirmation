@@ -83,18 +83,19 @@
   Confirmation.DEFAULTS = $.extend({}, $.fn.popover.Constructor.DEFAULTS, {
     placement: 'top',
     title: 'Are you sure?',
+	html: true,
     href: false,
     popout: false,
     singleton: false,
     target: '_self',
-    onconfirm: $.noop,
-    oncancel: $.noop,
-    btnokclass: 'btn-xs btn-primary',
-    btnokicon: 'glyphicon glyphicon-ok',
-    btnoklabel: 'Yes',
-    btncancelclass: 'btn-xs btn-default',
-    btncancelicon: 'glyphicon glyphicon-remove',
-    btncancellabel: 'No',
+    onConfirm: $.noop,
+    onCancel: $.noop,
+    btnOkClass: 'btn-xs btn-primary',
+    btnOkIcon: 'glyphicon glyphicon-ok',
+    btnOkLabel: 'Yes',
+    btnCancelClass: 'btn-xs btn-default',
+    btnCancelIcon: 'glyphicon glyphicon-remove',
+    btnCancelLabel: 'No',
     template:
       '<div class="popover confirmation">' +
         '<div class="arrow"></div>' +
@@ -126,9 +127,9 @@
 
     // configure 'ok' button
     $tip.find('[data-apply="confirmation"]')
-      .addClass(o.btnokclass)
-      .html(o.btnoklabel)
-      .prepend($('<i></i>').addClass(o.btnokicon), ' ')
+      .addClass(o.btnOkClass)
+      .html(o.btnOkLabel)
+      .prepend($('<i></i>').addClass(o.btnOkIcon), ' ')
       .off('click')
       .one('click', function(e) {
         that.getOnConfirm.call(that).call(that.$element);
@@ -146,9 +147,9 @@
 
     // configure 'cancel' button
     $tip.find('[data-dismiss="confirmation"]')
-      .addClass(o.btncancelclass)
-      .html(o.btncancellabel)
-      .prepend($('<i></i>').addClass(o.btncancelicon), ' ')
+      .addClass(o.btnCancelClass)
+      .html(o.btnCancelLabel)
+      .prepend($('<i></i>').addClass(o.btnCancelIcon), ' ')
       .off('click')
       .one('click', function(e) {
         that.getOnCancel.call(that).call(that.$element);
@@ -169,11 +170,11 @@
     var $e = this.$element;
     var o = this.options;
 
-    if ($e.attr('data-onconfirm')) {
-      return getFunctionFromString($e.attr('data-onconfirm'));
+    if ($e.attr('data-on-confirm')) {
+      return getFunctionFromString($e.attr('data-on-confirm'));
     }
     else {
-      return o.onconfirm;
+      return o.onConfirm;
     }
   }
 
@@ -181,11 +182,11 @@
     var $e = this.$element;
     var o = this.options;
 
-    if ($e.attr('data-oncancel')) {
-      return getFunctionFromString($e.attr('data-oncancel'));
+    if ($e.attr('data-on-cancel')) {
+      return getFunctionFromString($e.attr('data-on-cancel'));
     }
     else {
-      return o.oncancel;
+      return o.onCancel;
     }
   }
 
