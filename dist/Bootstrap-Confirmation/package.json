@@ -1,0 +1,27 @@
+{
+  "name": "bootstrap-confirmation",
+  "version": "2.0.0",,
+  "homepage": "https://github.com/mistic100/Bootstrap-Confirmation",
+  "author": "ethaizone",
+  "contributors": [{
+    "name": "mistic100"
+  }],
+  "main": "./bootstrap-confirmation.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mistic100/Bootstrap-Confirmation.git"
+  },
+  "dependencies" : {
+    "bootstrap":  "3.x.x"
+  },
+  "keywords": [
+    "confirmation"
+  ],
+  "license": "Apache",
+  "bugs": {
+    "url": "https://github.com/mistic100/Bootstrap-Confirmation/issues"
+  }
+}
