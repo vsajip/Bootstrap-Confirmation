@@ -1,7 +1,7 @@
-/* ========================================================================
- * bootstrap-confirmation.js v2.0.0
+/*!
+ * Bootstrap-Confirmation
  * https://github.com/mistic100/Bootstrap-Confirmation
- * ========================================================================
+ *
  * Copyright 2013 Nimit Suwannagate <ethaizone@hotmail.com>
  * Copyright 2014 Damien "Mistic" Sorel <http://www.strangeplanet.fr>
  *
@@ -16,7 +16,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- * ======================================================================== */
+ */
 
 +function ($) {
   'use strict';
