@@ -1,12 +1,14 @@
 {
-  "name": "bootstrap-confirmation",
-  "version": "2.0.0",,
+  "name": "bootstrap-confirmation2",
+  "version": "2.1.0",
   "homepage": "https://github.com/mistic100/Bootstrap-Confirmation",
+  "description": "Bootstrap plugin for on-place confirm boxes using Popover",
   "author": "ethaizone",
   "contributors": [{
-    "name": "mistic100"
+    "name": "Damien \"Mistic\" Sorel",
+    "homepage": "http://www.strangeplanet.fr"
   }],
-  "main": "./bootstrap-confirmation.js",
+  "main": "bootstrap-confirmation.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,8 +19,13 @@
   "dependencies" : {
     "bootstrap":  "3.x.x"
   },
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-contrib-uglify": "~0.4.0"
+  },
   "keywords": [
-    "confirmation"
+    "confirmation",
+    "popup"
   ],
   "license": "Apache",
   "bugs": {

@@ -3,6 +3,6 @@
   "version": "0.0.0",
 
   "dependencies": {
-    "Bootstrap-Confirmation": "git@github.com:mistic100/Bootstrap-Confirmation.git#master"
+    "bootstrap-confirmation2": "git://github.com/mistic100/Bootstrap-Confirmation.git#master"
   }
 }
