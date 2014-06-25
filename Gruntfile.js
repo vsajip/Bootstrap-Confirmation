@@ -22,12 +22,28 @@ module.exports = function(grunt) {
                     ]
                 }
             }
+        },
+
+        // jshint tests
+        jshint: {
+            lib: {
+                files: {
+                    src: [
+                        'bootstrap-confirmation.js'
+                    ]
+                }
+            }
         }
     });
 
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
 
     grunt.registerTask('default', [
         'uglify'
+    ]);
+    
+    grunt.registerTask('test', [
+        'jshint'
     ]);
 };

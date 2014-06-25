@@ -5,7 +5,7 @@
  * Licensed under the Apache License, Version 2.0 (the "License")
  */
 
-+function ($) {
+(function ($) {
   'use strict';
 
   // Confirmation extends popover.js
@@ -46,31 +46,29 @@
 
     // manage singleton
     this.$element.on('show.bs.confirmation', function(e) {
-      var o = that.options
-      if (o.singleton) {
-        $(o._all_selector).not(that.$element).confirmation('hide')
+      if (that.options.singleton) {
+        $(that.options._all_selector).not(that.$element).confirmation('hide');
       }
     });
 
     // manage popout
     this.$element.on('shown.bs.confirmation', function(e) {
-      var o = that.options;
-      if (o.popout && !eventBody) {
+      if (that.options.popout && !eventBody) {
         eventBody = $('body').on('click', function (e) {
-          if ($(o._all_selector).is(e.target)) return;
-          $(o._all_selector).confirmation('hide');
+          if ($(that.options._all_selector).is(e.target)) return;
+          $(that.options._all_selector).confirmation('hide');
 
           $('body').off(e);
           eventBody = false;
         });
       }
     });
-  }
+  };
 
   Confirmation.DEFAULTS = $.extend({}, $.fn.popover.Constructor.DEFAULTS, {
     placement: 'top',
     title: 'Are you sure?',
-	html: true,
+    html: true,
     href: false,
     popout: false,
     singleton: false,
@@ -105,12 +103,11 @@
   };
 
   Confirmation.prototype.setContent = function () {
-    var that    = this;
-    var $tip    = this.tip();
-    var title   = this.getTitle();
-	var o		= this.options;
+    var that = this,
+        $tip = this.tip(),
+        o = this.options;
 
-    $tip.find('.popover-title')[o.html ? 'html' : 'text'](title);
+    $tip.find('.popover-title')[o.html ? 'html' : 'text'](this.getTitle());
 
     // configure 'ok' button
     $tip.find('[data-apply="confirmation"]')
@@ -142,7 +139,7 @@
         that.getOnCancel.call(that).call(that.$element);
         that.$element.trigger('canceled.bs.confirmation');
         that.leave(that);
-      })
+      });
 
     $tip.removeClass('fade top bottom left right in');
 
@@ -151,31 +148,25 @@
     if (!$tip.find('.popover-title').html()) {
       $tip.find('.popover-title').hide();
     }
-  }
+  };
 
   Confirmation.prototype.getOnConfirm = function() {
-    var $e = this.$element;
-    var o = this.options;
-
-    if ($e.attr('data-on-confirm')) {
-      return getFunctionFromString($e.attr('data-on-confirm'));
+    if (this.$element.attr('data-on-confirm')) {
+      return getFunctionFromString(this.$element.attr('data-on-confirm'));
     }
     else {
-      return o.onConfirm;
+      return this.options.onConfirm;
     }
-  }
+  };
 
   Confirmation.prototype.getOnCancel = function() {
-    var $e = this.$element;
-    var o = this.options;
-
-    if ($e.attr('data-on-cancel')) {
-      return getFunctionFromString($e.attr('data-on-cancel'));
+    if (this.$element.attr('data-on-cancel')) {
+      return getFunctionFromString(this.$element.attr('data-on-cancel'));
     }
     else {
-      return o.onCancel;
+      return this.options.onCancel;
     }
-  }
+  };
 
   /*
    * Generates an anonymous function from a function name
@@ -183,17 +174,17 @@
    * root context is window
    */
   function getFunctionFromString(functionName) {
-    var context = window;
-    var namespaces = functionName.split(".");
-    var func = namespaces.pop();
+    var context = window,
+        namespaces = functionName.split('.'),
+        func = namespaces.pop();
 
-    for(var i=0; i<namespaces.length; i++) {
+    for (var i=0; i<namespaces.length; i++) {
       context = context[namespaces[i]];
     }
 
     return function() {
       context[func].call(this);
-    }
+    };
   }
 
 
@@ -207,14 +198,20 @@
     options._all_selector = this.selector;
 
     return this.each(function () {
-      var $this   = $(this);
-      var data    = $this.data('bs.confirmation');
+      var $this   = $(this),
+          data    = $this.data('bs.confirmation');
 
-      if (!data && option == 'destroy') return;
-      if (!data) $this.data('bs.confirmation', (data = new Confirmation(this, options)));
-      if (typeof option == 'string') data[option]();
-    })
-  }
+      if (!data && option == 'destroy') {
+        return;
+      }
+      if (!data) {
+        $this.data('bs.confirmation', (data = new Confirmation(this, options)));
+      }
+      if (typeof option == 'string') {
+        data[option]();
+      }
+    });
+  };
 
   $.fn.confirmation.Constructor = Confirmation;
 
@@ -225,6 +222,6 @@
   $.fn.confirmation.noConflict = function () {
     $.fn.confirmation = old;
     return this;
-  }
+  };
 
-}(jQuery);
+}(jQuery));
