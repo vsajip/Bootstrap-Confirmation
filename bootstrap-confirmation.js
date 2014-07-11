@@ -1,5 +1,5 @@
 /*!
- * Bootstrap Confirmation 2.1.0
+ * Bootstrap Confirmation
  * Copyright 2013 Nimit Suwannagate <ethaizone@hotmail.com>
  * Copyright 2014 Damien "Mistic" Sorel <http://www.strangeplanet.fr>
  * Licensed under the Apache License, Version 2.0 (the "License")
@@ -122,7 +122,7 @@
 
     this.options._isDelegate = false;
     if (options.selector) { // container of buttons
-      this.options._selector = this._options._selector = options._root_selector +' '+ selector;
+      this.options._selector = this._options._selector = options._root_selector +' '+ options.selector;
     }
     else if (options._selector) { // children of container
       this.options._selector = options._selector;
