@@ -153,7 +153,7 @@
       });
 
     // add href to confirm button if needed
-    if (o.href && o.href != "#") 
+    if (o.href && o.href != "#") {
       $tip.find('[data-apply="confirmation"]').attr({
         href: o.href,
         target: o.target
