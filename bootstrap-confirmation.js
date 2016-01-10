@@ -37,11 +37,6 @@
         }
       });
 
-      // trigger original event on confirm
-      this.$element.on('confirmed.bs.confirmation', function(e) {
-        $(this).trigger(that.options.trigger, [true]);
-      });
-
       // manage singleton
       this.$element.on('show.bs.confirmation', function(e) {
         if (that.options.singleton) {
@@ -118,6 +113,8 @@
 
   // custom init keeping trace of selectors
   Confirmation.prototype.init = function(type, element, options) {
+    options.trigger = 'click';
+
     $.fn.popover.Constructor.prototype.init.call(this, type, element, options);
 
     this.options._isDelegate = false;
@@ -149,6 +146,7 @@
       .one('click', function(e) {
         that.getOnConfirm.call(that).call(that.$element);
         that.$element.trigger('confirmed.bs.confirmation');
+        that.$element.trigger(that.options.trigger, [true]);
         that.$element.confirmation('hide');
       });
 
@@ -168,6 +166,7 @@
       .off('click')
       .one('click', function(e) {
         that.getOnCancel.call(that).call(that.$element);
+        if (that.inState) that.inState.click = false; // Bootstrap 3.3.5
         that.$element.trigger('canceled.bs.confirmation');
         that.$element.confirmation('hide');
       });
