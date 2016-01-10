@@ -1,7 +1,7 @@
 /*!
  * Bootstrap Confirmation
  * Copyright 2013 Nimit Suwannagate <ethaizone@hotmail.com>
- * Copyright 2014 Damien "Mistic" Sorel <http://www.strangeplanet.fr>
+ * Copyright 2014-2016 Damien "Mistic" Sorel <http://www.strangeplanet.fr>
  * Licensed under the Apache License, Version 2.0 (the "License")
  */
 

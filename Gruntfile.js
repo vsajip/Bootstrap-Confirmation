@@ -6,7 +6,7 @@ module.exports = function(grunt) {
             '/*!\n'+
             ' * Bootstrap Confirmation <%= pkg.version %>\n'+
             ' * Copyright 2013 Nimit Suwannagate <ethaizone@hotmail.com>\n'+
-            ' * Copyright <%= grunt.template.today("yyyy") %> Damien "Mistic" Sorel <http://www.strangeplanet.fr>\n'+
+            ' * Copyright 2014-<%= grunt.template.today("yyyy") %> Damien "Mistic" Sorel <http://www.strangeplanet.fr>\n'+
             ' * Licensed under the Apache License, Version 2.0 (the "License")\n'+
             ' */',
 

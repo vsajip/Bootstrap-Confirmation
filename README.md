@@ -1,6 +1,6 @@
 # Bootstrap-Confirmation
 
-[![Bower version](https://badge.fury.io/bo/bootstrap-confirmation2.svg)](http://badge.fury.io/bo/bootstrap-confirmation2)
+[![Bower version](https://img.shields.io/bower/v/bootstrap-confirmation2.svg?style=flat-square)](http://mistic100.github.io/Bootstrap-Confirmation)
 
 Bootstrap plugin for on-place confirm boxes using Popover.
 
