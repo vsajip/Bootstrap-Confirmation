@@ -14,19 +14,40 @@
   // CONFIRMATION PUBLIC CLASS DEFINITION
   // ===============================
   var Confirmation = function (element, options) {
+    options.trigger = 'click';
+
     this.init('confirmation', element, options);
+
+    // keep trace of selectors
+    this.options._isDelegate = false;
+    if (options.selector) { // container of buttons
+      this.options._selector = this._options._selector = options._root_selector +' '+ options.selector;
+    }
+    else if (options._selector) { // children of container
+      this.options._selector = options._selector;
+      this.options._isDelegate = true;
+    }
+    else { // standalone
+      this.options._selector = options._root_selector;
+    }
 
     var that = this;
 
     if (!this.options.selector) {
-      // get existing href and target
-      if (this.$element.attr('href')) {
-        this.options.href = this.$element.attr('href');
-        this.$element.removeAttr('href');
-        if (this.$element.attr('target')) {
-          this.options.target = this.$element.attr('target');
+      // store copied attributes
+      this.options._attributes = {};
+      if (this.options.copyAttributes) {
+        if (typeof this.options.copyAttributes === 'string') {
+          this.options.copyAttributes = this.options.copyAttributes.split(' ');
         }
       }
+      else {
+        this.options.copyAttributes = [];
+      }
+
+      this.options.copyAttributes.forEach(function(attr) {
+        this.options._attributes[attr] = this.$element.attr(attr);
+      }, this);
 
       // cancel original event
       this.$element.on(that.options.trigger, function(e, ack) {
@@ -60,7 +81,7 @@
             if ($(that.options._selector).is(e.target)) {
               return;
             }
-  
+
             // close all popover already initialized
             $(that.options._selector).filter(function() {
               return $(this).data('bs.confirmation') !== undefined;
@@ -78,10 +99,9 @@
     placement: 'top',
     title: 'Are you sure?',
     html: true,
-    href: false,
     popout: false,
     singleton: false,
-    target: '_self',
+    copyAttributes: 'href target',
     onConfirm: $.noop,
     onCancel: $.noop,
     btnOkClass: 'btn-xs btn-primary',
@@ -111,25 +131,6 @@
     return Confirmation.DEFAULTS;
   };
 
-  // custom init keeping trace of selectors
-  Confirmation.prototype.init = function(type, element, options) {
-    options.trigger = 'click';
-
-    $.fn.popover.Constructor.prototype.init.call(this, type, element, options);
-
-    this.options._isDelegate = false;
-    if (options.selector) { // container of buttons
-      this.options._selector = this._options._selector = options._root_selector +' '+ options.selector;
-    }
-    else if (options._selector) { // children of container
-      this.options._selector = options._selector;
-      this.options._isDelegate = true;
-    }
-    else { // standalone
-      this.options._selector = options._root_selector;
-    }
-  };
-
   Confirmation.prototype.setContent = function () {
     var that = this,
         $tip = this.tip(),
@@ -141,6 +142,7 @@
     $tip.find('[data-apply="confirmation"]')
       .addClass(o.btnOkClass)
       .html(o.btnOkLabel)
+      .attr(this.options._attributes)
       .prepend($('<i></i>').addClass(o.btnOkIcon), ' ')
       .off('click')
       .one('click', function(e) {
@@ -149,14 +151,6 @@
         that.$element.trigger(that.options.trigger, [true]);
         that.$element.confirmation('hide');
       });
-
-    // add href to confirm button if needed
-    if (o.href && o.href != "#") {
-      $tip.find('[data-apply="confirmation"]').attr({
-        href: o.href,
-        target: o.target
-      });
-    }
 
     // configure 'cancel' button
     $tip.find('[data-dismiss="confirmation"]')
