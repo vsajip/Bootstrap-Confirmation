@@ -1,5 +1,7 @@
 /_site
-Gemfile.lock
+/Gemfile.lock
+/bower_components
+/node_modules
 
 # commit minimum dependencies
 /dist/bootstrap
