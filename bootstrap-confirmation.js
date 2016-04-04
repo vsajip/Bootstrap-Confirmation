@@ -138,6 +138,11 @@
 
     $tip.find('.popover-title')[o.html ? 'html' : 'text'](this.getTitle());
 
+    $tip.on('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    });
+
     // configure 'ok' button
     $tip.find('[data-apply="confirmation"]')
       .addClass(o.btnOkClass)
