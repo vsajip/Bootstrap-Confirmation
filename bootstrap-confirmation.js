@@ -27,6 +27,7 @@
     popout: false,
     singleton: false,
     copyAttributes: 'href target',
+    buttons: null,
     onConfirm: $.noop,
     onCancel: $.noop,
     btnOkClass: 'btn-xs btn-primary',
@@ -168,32 +169,61 @@
       e.stopPropagation();
     });
 
-    // configure 'ok' button
-    $tip.find('[data-apply="confirmation"]')
-      .addClass(this.options.btnOkClass)
-      .html(this.options.btnOkLabel)
-      .attr(this.options._attributes)
-      .prepend($('<i></i>').addClass(this.options.btnOkIcon), ' ')
-      .off('click')
-      .one('click', function(e) {
-        self.getOnConfirm.call(self).call(self.$element);
-        self.$element.trigger('confirmed.bs.confirmation');
-        self.$element.trigger(self.options.trigger, [true]);
-        self.$element.confirmation('hide');
-      });
+    // configure custom buttons
+    if (this.options.buttons) {
+      var $group = $tip.find('.confirmation-buttons .btn-group').empty();
 
-    // configure 'cancel' button
-    $tip.find('[data-dismiss="confirmation"]')
-      .addClass(this.options.btnCancelClass)
-      .html(this.options.btnCancelLabel)
-      .prepend($('<i></i>').addClass(this.options.btnCancelIcon), ' ')
-      .off('click')
-      .one('click', function(e) {
-        self.getOnCancel.call(self).call(self.$element);
-        if (self.inState) self.inState.click = false; // Bootstrap 3.3.5
-        self.$element.trigger('canceled.bs.confirmation');
-        self.$element.confirmation('hide');
-      });
+      this.options.buttons.forEach(function(button) {
+        $group.append(
+          $('<a></a>')
+            .addClass(button.class)
+            .html(button.label)
+            .prepend($('<i></i>').addClass(button.icon), ' ')
+            .one('click', function() {
+              if (button.onClick) {
+                button.onClick.call(self.$element);
+              }
+              if (button.cancel) {
+                self.getOnCancel.call(self).call(self.$element);
+                self.$element.trigger('canceled.bs.confirmation');
+              }
+              else {
+                self.getOnConfirm.call(self).call(self.$element);
+                self.$element.trigger('confirmed.bs.confirmation');
+              }
+              self.$element.confirmation('hide');
+            })
+        );
+      }, this);
+    }
+    else {
+      // configure 'ok' button
+      $tip.find('[data-apply="confirmation"]')
+        .addClass(this.options.btnOkClass)
+        .html(this.options.btnOkLabel)
+        .attr(this.options._attributes)
+        .prepend($('<i></i>').addClass(this.options.btnOkIcon), ' ')
+        .off('click')
+        .one('click', function() {
+          self.getOnConfirm.call(self).call(self.$element);
+          self.$element.trigger('confirmed.bs.confirmation');
+          self.$element.trigger(self.options.trigger, [true]);
+          self.$element.confirmation('hide');
+        });
+
+      // configure 'cancel' button
+      $tip.find('[data-dismiss="confirmation"]')
+        .addClass(this.options.btnCancelClass)
+        .html(this.options.btnCancelLabel)
+        .prepend($('<i></i>').addClass(this.options.btnCancelIcon), ' ')
+        .off('click')
+        .one('click', function() {
+          self.getOnCancel.call(self).call(self.$element);
+          if (self.inState) self.inState.click = false; // Bootstrap 3.3.5
+          self.$element.trigger('canceled.bs.confirmation');
+          self.$element.confirmation('hide');
+        });
+    }
 
     $tip.removeClass('fade top bottom left right in');
 

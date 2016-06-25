@@ -67,6 +67,13 @@
         <button class="btn btn-default" data-toggle="confirmation" data-popout="true">Confirmation 2</button>
       </div>
     </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">Custom buttons</div>
+      <div class="panel-body">
+        <button class="btn btn-default" id="custom-confirmation" data-title="Choose your currency">Confirmation</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -79,6 +86,41 @@
   console.log('Bootstrap Confirmation ' + $.fn.confirmation.Constructor.VERSION);
 
   $('[data-toggle=confirmation]').confirmation();
+
+  var currency = '';
+  $('#custom-confirmation').confirmation({
+    onConfirm: function() {
+      alert('You choosed ' + currency);
+    },
+    buttons: [
+      {
+        class: 'btn btn-danger',
+        icon: 'glyphicon glyphicon-usd',
+        onClick: function() {
+          currency = 'US Dollar';
+        }
+      },
+      {
+        class: 'btn btn-primary',
+        icon: 'glyphicon glyphicon-euro',
+        onClick: function() {
+          currency = 'Euro';
+        }
+      },
+      {
+        class: 'btn btn-warning',
+        icon: 'glyphicon glyphicon-bitcoin',
+        onClick: function() {
+          currency = 'Bitcoin';
+        }
+      },
+      {
+        class: 'btn btn-default',
+        icon: 'glyphicon glyphicon-remove',
+        cancel: true
+      }
+    ]
+  });
 </script>
 
 <script>
