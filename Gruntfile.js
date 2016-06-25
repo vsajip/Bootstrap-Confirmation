@@ -1,49 +1,106 @@
 module.exports = function(grunt) {
-    grunt.initConfig({
-        pkg: grunt.file.readJSON('package.json'),
+  require('jit-grunt')(grunt);
 
-        banner:
-            '/*!\n'+
-            ' * Bootstrap Confirmation <%= pkg.version %>\n'+
-            ' * Copyright 2013 Nimit Suwannagate <ethaizone@hotmail.com>\n'+
-            ' * Copyright 2014-<%= grunt.template.today("yyyy") %> Damien "Mistic" Sorel <http://www.strangeplanet.fr>\n'+
-            ' * Licensed under the Apache License, Version 2.0 (the "License")\n'+
-            ' */',
+  grunt.initConfig({
+      pkg: grunt.file.readJSON('package.json'),
 
-        // compress js
-        uglify: {
-            options: {
-                banner: '<%= banner %>\n'
-            },
-            dist: {
-                files: {
-                    'bootstrap-confirmation.min.js': [
-                        'bootstrap-confirmation.js'
-                    ]
-                }
-            }
-        },
+      banner: '/*!\n' +
+      ' * Bootstrap Confirmation <%= pkg.version %>\n' +
+      ' * Copyright 2013 Nimit Suwannagate <ethaizone@hotmail.com>\n' +
+      ' * Copyright 2014-<%= grunt.template.today("yyyy") %> Damien "Mistic" Sorel <contact@git.strangeplanet.fr>\n' +
+      ' * Licensed under the Apache License, Version 2.0\n' +
+      ' */',
 
-        // jshint tests
-        jshint: {
-            lib: {
-                files: {
-                    src: [
-                        'bootstrap-confirmation.js'
-                    ]
-                }
-            }
+      // serve folder content
+      connect: {
+        dev: {
+          options: {
+            port: 9000,
+            livereload: true
+          }
         }
-    });
+      },
 
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
+      // watchers
+      watch: {
+        options: {
+          livereload: true
+        },
+        dev: {
+          files: ['bootstrap-confirmation.js', 'example/**'],
+          tasks: []
+        }
+      },
 
-    grunt.registerTask('default', [
-        'uglify'
-    ]);
-    
-    grunt.registerTask('test', [
-        'jshint'
-    ]);
+      // open example
+      open: {
+        dev: {
+          path: 'http://localhost:<%= connect.dev.options.port%>/example/index.html'
+        }
+      },
+
+      // replace version number
+      replace: {
+        dist: {
+          options: {
+            patterns: [
+              {
+                match: /(Confirmation\.VERSION = ').*(';)/,
+                replacement: '$1<%= pkg.version %>$2'
+              }
+            ]
+          },
+          files: {
+            'bootstrap-confirmation.js': [
+              'bootstrap-confirmation.js'
+            ]
+          }
+        }
+      },
+
+      // compress js
+      uglify: {
+        options: {
+          banner: '<%= banner %>\n',
+          mangle: {
+            except: ['$']
+          }
+        },
+        dist: {
+          files: {
+            'bootstrap-confirmation.min.js': [
+              'bootstrap-confirmation.js'
+            ]
+          }
+        }
+      },
+
+      // jshint tests
+      jshint: {
+        lib: {
+          files: {
+            src: [
+              'bootstrap-confirmation.js'
+            ]
+          }
+        }
+      }
+    }
+  );
+
+  grunt.registerTask('default', [
+    'replace',
+    'uglify'
+  ]);
+
+  grunt.registerTask('test', [
+    'jshint'
+  ]);
+
+  grunt.registerTask('serve', [
+    'connect',
+    'open',
+    'watch'
+  ]);
+
 };
