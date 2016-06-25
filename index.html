@@ -6,10 +6,11 @@ isHome: true
 ---
 
 <section class="bs-docs-section">
-	<h3>Let's face it: Confirmation dialog boxes are annoying !</h3>
+  <h3>Let's face it: Confirmation dialog boxes are annoying !</h3>
   <blockquote>
     <em>ethaizone :</em><br>
-    This is my primary reason I wrote this plugin. I wanted a simple box to comfirm a task. Instead of using rude boxes that interrupt a user's workflow, <strong>let's use a popover instead</strong>.
+    This is my primary reason I wrote this plugin. I wanted a simple box to comfirm a task. Instead of using rude boxes
+    that interrupt a user's workflow, <strong>let's use a popover instead</strong>.
   </blockquote>
 </section>
 
@@ -22,44 +23,67 @@ isHome: true
 
   <h3>JS Dependencies</h3>
   <ul>
-      <li><a href="http://jquery.com">jQuery >= 1.9.0</a></li>
-      <li><a href="http://getbootstrap.com">Bootstrap Popover 3.x.x</a> (included in bootstrap.js)</li>
+    <li><a href="http://jquery.com">jQuery >= 1.9.0</a></li>
+    <li><a href="http://getbootstrap.com">Bootstrap Popover 3.x.x</a> (included in bootstrap.js)</li>
   </ul>
 
   <h3>Let's go!</h3>
-  <p>Download <a href="http://raw.githubusercontent.com/mistic100/Bootstrap-Confirmation/master/bootstrap-confirmation.min.js">bootstrap-confirmation.js</a> and include it after <code>jquery.js</code> and <code>bootstrap.js</code>.</p>
+  <p>Download <a
+    href="http://raw.githubusercontent.com/mistic100/Bootstrap-Confirmation/master/bootstrap-confirmation.min.js">bootstrap-confirmation.js</a>
+    and include it after <code>jquery.js</code> and <code>bootstrap.js</code>.</p>
 
+  <!-- @formatter:off -->
 {% highlight html %}
 <script src="path/to/jquery.js"></script>
 <script src="path/to/bootstrap.js"></script>
 <script src="path/to/bootstrap-confirmation.js"></script>
 {% endhighlight %}
-  
+<!-- @formatter:on -->
+
   <p>It is also available on Bower under the name <code>bootstrap-confirmation2</code>.</p>
 </section>
 
 <section class="bs-docs-section">
   <h1 id="examples" class="page-header">Examples</h1>
 
-  <h3 id="basic-demo">Basic demo</h3>
-  <p>Add small overlays with "Yes" and "No" buttons, like those on the iPad, to any element. Click the button to trigger the confirmation.</p>
+  <h3 id="ex-basic-demo">Basic demo</h3>
+  <p>Add small overlays with "Yes" and "No" buttons, like those on the iPad, to any element. Click the button to trigger
+    the confirmation.</p>
   <div class="bs-example">
-    <button class="btn btn-large btn-danger" data-toggle="confirmation">Default configuration</button>
+    <button class="btn btn-large btn-danger" data-toggle="confirmation">Confirmation</button>
   </div>
+  <!-- @formatter:off -->
 {% highlight html %}
 <button class="btn btn-default" data-toggle="confirmation">Confirmation</button>
 {% endhighlight %}
+<!-- @formatter:on -->
 
-  <h3 id="custom-buttons">Custom buttons</h3>
-  <p>Has personalized labels, icons and colors.</p>
+  <h3 id="ex-personalization">Personalization</h3>
+  <p>Has personalized description, labels, icons and colors.</p>
   <div class="bs-example">
-    <button class="btn btn-large btn-primary" data-toggle="confirmation" data-btn-ok-label="Continue" data-btn-ok-icon="glyphicon glyphicon-share-alt" data-btn-ok-class="btn-success" data-btn-cancel-label="Stoooop!" data-btn-cancel-icon="glyphicon glyphicon-ban-circle" data-btn-cancel-class="btn-danger">Custom button</button>
+    <button class="btn btn-large btn-primary" data-toggle="confirmation"
+            data-btn-ok-label="Continue" data-btn-ok-icon="glyphicon glyphicon-share-alt"
+            data-btn-ok-class="btn-success"
+            data-btn-cancel-label="Stoooop!" data-btn-cancel-icon="glyphicon glyphicon-ban-circle"
+            data-btn-cancel-class="btn-danger"
+            data-title="Is it ok?" data-content="This might be dangerous">
+      Confirmation
+    </button>
   </div>
+  <!-- @formatter:off -->
 {% highlight html %}
-<button class="btn btn-default" data-toggle="confirmation" data-btn-ok-label="Continue" data-btn-ok-icon="glyphicon glyphicon-share-alt" data-btn-ok-class="btn-success" data-btn-cancel-label="Stoooop!" data-btn-cancel-icon="glyphicon glyphicon-ban-circle" data-btn-cancel-class="btn-danger">Confirmation</button>
+<button class="btn btn-large btn-primary" data-toggle="confirmation"
+        data-btn-ok-label="Continue" data-btn-ok-icon="glyphicon glyphicon-share-alt"
+        data-btn-ok-class="btn-success"
+        data-btn-cancel-label="Stoooop!" data-btn-cancel-icon="glyphicon glyphicon-ban-circle"
+        data-btn-cancel-class="btn-danger"
+        data-title="Is it ok?" data-content="This might be dangerous">
+  Confirmation
+</button>
 {% endhighlight %}
+<!-- @formatter:on -->
 
-  <h3 id="4-directions">Four directions</h3>
+  <h3 id="ex-four-directions">Four directions</h3>
   <div class="bs-example">
     <div class="bs-example-tooltips">
       <button class="btn btn-default" data-toggle="confirmation" data-placement="left">Confirmation on left</button>
@@ -68,14 +92,16 @@ isHome: true
       <button class="btn btn-default" data-toggle="confirmation" data-placement="right">Confirmation on right</button>
     </div>
   </div>
+  <!-- @formatter:off -->
 {% highlight html %}
 <button class="btn btn-default" data-toggle="confirmation" data-placement="left">Confirmation on left</button>
 <button class="btn btn-default" data-toggle="confirmation" data-placement="top">Confirmation on top</button>
 <button class="btn btn-default" data-toggle="confirmation" data-placement="bottom">Confirmation on bottom</button>
 <button class="btn btn-default" data-toggle="confirmation" data-placement="right">Confirmation on right</button>
 {% endhighlight %}
+<!-- @formatter:on -->
 
-  <h3 id="singleton">Singleton</h3>
+  <h3 id="ex-singleton">Singleton</h3>
   <p>Only one boxe visible at once.</p>
   <div class="bs-example">
     <div class="bs-example-tooltips">
@@ -83,12 +109,14 @@ isHome: true
       <button class="btn btn-default" data-toggle="confirmation-singleton">Confirmation 2</button>
     </div>
   </div>
+  <!-- @formatter:off -->
 {% highlight html %}
 <button class="btn btn-default" data-toggle="confirmation" data-singleton="true">Confirmation 1</button>
 <button class="btn btn-default" data-toggle="confirmation" data-singleton="true">Confirmation 2</button>
 {% endhighlight %}
+<!-- @formatter:on -->
 
-  <h3 id="popout">Popout</h3>
+  <h3 id="ex-popout">Popout</h3>
   <p>Click anywhere on the page to close all boxes.</p>
   <div class="bs-example">
     <div class="bs-example-tooltips">
@@ -96,185 +124,301 @@ isHome: true
       <button class="btn btn-default" data-toggle="confirmation-popout">Confirmation 2</button>
     </div>
   </div>
+  <!-- @formatter:off -->
 {% highlight html %}
 <button class="btn btn-default" data-toggle="confirmation" data-popout="true">Confirmation 1</button>
 <button class="btn btn-default" data-toggle="confirmation" data-popout="true">Confirmation 2</button>
 {% endhighlight %}
+<!-- @formatter:on -->
+
+  <h3 id="ex-custom-buttons">Custom buttons</h3>
+  <p>Completely overwrite the default positive/negative buttons with the buttons of your choice.</p>
+  <div class="bs-example">
+    <button class="btn btn-primary" data-toggle="confirmation-custom" data-title="Approve item ?">Confirmation</button>
+  </div>
+  <!-- @formatter:off -->
+{% highlight html %}
+<!-- Configured with JavaScript -->
+{% endhighlight %}
+<!-- @formatter:on -->
 </section>
 
 <section class="bs-docs-section">
   <h1 id="usage" class="page-header">Usage</h1>
 
   <p>Enable confirmations via JavaScript:</p>
-  {% highlight javascript %}$('#example').confirmation(options);{% endhighlight %}
-
-  <p>Recommend way to use:</p>
   {% highlight javascript %}$('[data-toggle=confirmation]').confirmation(options);{% endhighlight %}
-  
+
   <div class="bs-callout bs-callout-danger">
     <h4>Declaration order</h4>
-    <p>Confirmation tries to cancel the default event of the target and trigger it when the "Ok" button is clicked. However, in order to have the good behavior, the plugin must be initialized <b>before</b> manually attaching event listener (with <code>$.on()</code>).</p>
-    <p>If this is not possible, you could listen the <code>confirmed.bs.confirmation</code> or use the <code>onConfirm</code> callback.</p>
+    <p>Confirmation tries to cancel the default event of the target and trigger it when the "Ok" button is clicked.
+      However, in order to have the good behavior, the plugin must be initialized <b>before</b> manually attaching event
+      listener (with <code>$.on()</code>).</p>
+    <p>If this is not possible, you could listen the <code>confirmed.bs.confirmation</code> or use the
+      <code>onConfirm</code> callback.</p>
   </div>
-  
+
   <div class="bs-callout bs-callout-info">
     <h4>About links</h4>
-    <p>If Confirmation is attached to a <code>&lt;a&gt;</code> tag, the <code>href</code> attribute will be removed and moved to the "Ok" button.</p>
+    <p>If Confirmation is attached to a <code>&lt;a&gt;</code> tag, the <code>href</code> attribute will be removed and
+      moved to the "Ok" button.</p>
   </div>
 
   <h2 id="options">Options</h2>
-  <p>Options can be passed via data attributes or JavaScript plain object. For data attributes, append the option name to <code>data-</code>, as in <code>data-btn-ok-class=""</code>.</p>
-  <p>All options from <a href="http://getbootstrap.com/javascript/#popovers">Bootstrap Popover</a> can be used except <code>content</code> and <code>trigger</code>.</p>
-  
+  <p>Options can be passed via data attributes or JavaScript plain object. For data attributes, append the option name
+    to <code>data-</code>, as in <code>data-btn-ok-class=""</code>.</p>
+  <p>All options from <a href="http://getbootstrap.com/javascript/#popovers">Bootstrap Popover</a> can be used except
+    <code>trigger</code>.</p>
+
   <div class="table-responsive">
     <table class="table table-bordered table-striped">
       <thead>
-        <tr>
-          <th style="width: 130px;">Name</th>
-          <th style="width: 100px;">type</th>
-          <th style="width: 150px;">default</th>
-          <th>description</th>
-        </tr>
+      <tr>
+        <th style="width: 130px;">Name</th>
+        <th style="width: 100px;">type</th>
+        <th style="width: 150px;">default</th>
+        <th>description</th>
+      </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>title</td>
-          <td>string | function</td>
-          <td>'Are you sure?'</td>
-          <td>default <i>content</i> value if <code>title</code> attribute isn't present.</td>
-        </tr>
-        <tr>
-          <td>placement</td>
-          <td>string | function</td>
-          <td>'top'</td>
-          <td><i>See Popover documentation</i></td>
-        </tr>
-        <tr>
-          <td>html</td>
-          <td>boolean</td>
-          <td>true</td>
-          <td><i>See Popover documentation</i></td>
-        </tr>
-        <tr>
-          <td>singleton</td>
-          <td>boolean</td>
-          <td>false</td>
-          <td>Set <code>true</code> to allow only one confirmation to show at a time.<br>
-             When the newest confirmation element is clicked, the older ones will disappear.
-          </td>
-        </tr>
-        <tr>
-          <td>popout</td>
-          <td>boolean</td>
-          <td>false</td>
-          <td>Set <code>true</code> to hide the confirmation when user clicks outside of it.<br>
-             This will affect all confirmations that use same selector.
-          </td>
-        </tr>
-        <tr>
-          <td>copyAttributes</td>
-          <td>string</td>
-          <td>'href target'</td>
-          <td>List of attributes that will be copied from the main element to the Confirm button.</td>
-        </tr>
-        <tr>
-          <td>btnOkClass</td>
-          <td>string</td>
-          <td>'btn-xs btn-primary'</td>
-          <td>Class of the "Ok" button.</td>
-        </tr>
-        <tr>
-          <td>btnOkIcon</td>
-          <td>string</td>
-          <td>'glyphicon glyphicon-ok'</td>
-          <td>Icon class of the "Ok" button.</td>
-        </tr>
-        <tr>
-          <td>btnOkLabel</td>
-          <td>string</td>
-          <td>'Yes'</td>
-          <td>Label of the "Ok" button.</td>
-        </tr>
-        <tr>
-          <td>btnCancelClass</td>
-          <td>string</td>
-          <td>'btn-xs btn-default'</td>
-          <td>Class of the "Cancel" button.</td>
-        </tr>
-        <tr>
-          <td>btnCancelIcon</td>
-          <td>string</td>
-          <td>'glyphicon glyphicon-remove'</td>
-          <td>Icon class of the "Cancel" button.</td>
-        </tr>
-        <tr>
-          <td>btnCancelLabel</td>
-          <td>string</td>
-          <td>'No'</td>
-          <td>Label of the "Cancel" button.</td>
-        </tr>
-        <tr>
-          <td>onConfirm</td>
-          <td>function</td>
-          <td>$.noop</td>
-          <td>Callback called when the "Ok" button is clicked.<br>
-             In <code>data-on-confirm</code> you can give the name of a function like <code>myConfirm</code> or <code>myObject.confirm</code>.
-          </td>
-        </tr>
-        <tr>
-          <td>onCancel</td>
-          <td>function</td>
-          <td>$.noop</td>
-          <td>Callback called when the "Cancel" button is clicked.<br>
-             In <code>data-on-cancel</code> you can give the name of a function like <code>myCancel</code> or <code>myObject.cancel</code>.
-          </td>
-        </tr>
+      <tr>
+        <td>title</td>
+        <td>string | function</td>
+        <td>'Are you sure?'</td>
+        <td>default <i>content</i> value if <code>title</code> attribute isn't present.</td>
+      </tr>
+      <tr>
+        <td>placement</td>
+        <td>string | function</td>
+        <td>'top'</td>
+        <td><i>See Popover documentation</i></td>
+      </tr>
+      <tr>
+        <td>html</td>
+        <td>boolean</td>
+        <td>true</td>
+        <td><i>See Popover documentation</i></td>
+      </tr>
+      <tr>
+        <td>singleton</td>
+        <td>boolean</td>
+        <td>false</td>
+        <td>Set <code>true</code> to allow only one confirmation to show at a time.<br>
+          When the newest confirmation element is clicked, the older ones will disappear.
+        </td>
+      </tr>
+      <tr>
+        <td>popout</td>
+        <td>boolean</td>
+        <td>false</td>
+        <td>Set <code>true</code> to hide the confirmation when user clicks outside of it.<br>
+          This will affect all confirmations that use same selector.
+        </td>
+      </tr>
+      <tr>
+        <td>copyAttributes</td>
+        <td>string</td>
+        <td>'href target'</td>
+        <td>List of attributes that will be copied from the main element to the Confirm button.</td>
+      </tr>
+      <tr>
+        <td>btnOkClass</td>
+        <td>string</td>
+        <td>'btn-xs btn-primary'</td>
+        <td>Class of the "Ok" button.</td>
+      </tr>
+      <tr>
+        <td>btnOkIcon</td>
+        <td>string</td>
+        <td>'glyphicon glyphicon-ok'</td>
+        <td>Icon class of the "Ok" button.</td>
+      </tr>
+      <tr>
+        <td>btnOkLabel</td>
+        <td>string</td>
+        <td>'Yes'</td>
+        <td>Label of the "Ok" button.</td>
+      </tr>
+      <tr>
+        <td>btnCancelClass</td>
+        <td>string</td>
+        <td>'btn-xs btn-default'</td>
+        <td>Class of the "Cancel" button.</td>
+      </tr>
+      <tr>
+        <td>btnCancelIcon</td>
+        <td>string</td>
+        <td>'glyphicon glyphicon-remove'</td>
+        <td>Icon class of the "Cancel" button.</td>
+      </tr>
+      <tr>
+        <td>btnCancelLabel</td>
+        <td>string</td>
+        <td>'No'</td>
+        <td>Label of the "Cancel" button.</td>
+      </tr>
+      <tr>
+        <td>onConfirm</td>
+        <td>function</td>
+        <td>$.noop</td>
+        <td>Callback called when the "Ok" button is clicked.<br>
+          In <code>data-on-confirm</code> you can give the name of a function like <code>myConfirm</code> or <code>myObject.confirm</code>.
+        </td>
+      </tr>
+      <tr>
+        <td>onCancel</td>
+        <td>function</td>
+        <td>$.noop</td>
+        <td>Callback called when the "Cancel" button is clicked.<br>
+          In <code>data-on-cancel</code> you can give the name of a function like <code>myCancel</code> or <code>myObject.cancel</code>.
+        </td>
+      </tr>
+      <tr>
+        <td>buttons</td>
+        <td>object[]</td>
+        <td></td>
+        <td>Configuration of <a href="#custom-buttons">custom buttons</a>.</td>
+      </tr>
       </tbody>
     </table>
   </div>
-  
+
   <div class="bs-callout bs-callout-info">
     <h4>Data attributes for individual popovers</h4>
-    <p>Options for individual popovers can alternatively be specified through the use of data attributes, as explained above.</p>
+    <p>Options for individual popovers can alternatively be specified through the use of data attributes, as explained
+      above.</p>
   </div>
-  
+
+
+  <h2 id="custom buttons">Custom buttons</h2>
+  <p>If the default positive/negative buttons are not enough you can use the <code>buttons</code> configuration to
+    overwrite them. It is an array of object as detailled bellow. If <code>buttons</code> is provided, other <code>btnOk*</code>
+    and <code>btnCancel*</code> parameters will be ignored.</p>
+  <p>When a custom button is clicked the <code>onConfirm</code> callback is called and the <code>confirmed.bs.confirmation</code>
+    event is fired, unless you set <code>cancel = true</code>, in this case the <code>onCancel</code> callback is called
+    and the <code>canceled.bs.confirmation</code> event is fired.</p>
+
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped">
+      <thead>
+      <tr>
+        <th style="width: 130px;">Attribute</th>
+        <th style="width: 100px;">type</th>
+        <th>description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <tr>
+        <td>label</td>
+        <td>string</td>
+        <td>Label of the button.</td>
+      </tr>
+      <tr>
+        <td>class</td>
+        <td>string</td>
+        <td>Class of the button.</td>
+      </tr>
+      <tr>
+        <td>icon</td>
+        <td>string</td>
+        <td>Icon class of the button.</td>
+      </tr>
+      <tr>
+        <td>onClick</td>
+        <td>function</td>
+        <td>Callback called when the button is clicked.</td>
+      </tr>
+      <tr>
+        <td>cancel</td>
+        <td>boolean</td>
+        <td>Is it a confirmation or a cancellation button.</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="bs-example"></div>
+<!-- @formatter:off -->
+{% highlight javascript %}
+{
+  onConfirm: function() {
+    alert('You choosed ' + currency);
+  },
+  onCancel: function() {
+    alert('You didn\'t choose');
+  },
+  buttons: [
+    {
+      class: 'btn btn-danger',
+      icon: 'glyphicon glyphicon-usd',
+      onClick: function() {
+        currency = 'US Dollar';
+      }
+    },
+    {
+      class: 'btn btn-primary',
+      icon: 'glyphicon glyphicon-euro',
+      onClick: function() {
+        currency = 'Euro';
+      }
+    },
+    {
+      class: 'btn btn-warning',
+      icon: 'glyphicon glyphicon-bitcoin',
+      onClick: function() {
+        currency = 'Bitcoin';
+      }
+    },
+    {
+      class: 'btn btn-default',
+      icon: 'glyphicon glyphicon-remove',
+      cancel: true
+    }
+  ]
+}
+{% endhighlight %}
+<!-- @formatter:on -->
+
+
   <h2 id="methods">Methods</h2>
   <h4>.confirmation('show')</h4>
   <p>Reveals an elements confirmation.</p>
   {% highlight javascript %}$('#element').confirmation('show');{% endhighlight %}
-  
+
   <h4>.confirmation('hide')</h4>
   <p>Hides an elements confirmation.</p>
   {% highlight javascript %}$('#element').confirmation('hide');{% endhighlight %}
-  
+
   <h4>.confirmation('toggle')</h4>
   <p>Toggles an elements confirmation.</p>
   {% highlight javascript %}$('#element').confirmation('toggle');{% endhighlight %}
-  
+
   <h4>.confirmation('destroy')</h4>
   <p>Hides and destroys an element's confirmation.</p>
   {% highlight javascript %}$('#element').confirmation('destroy');{% endhighlight %}
-  
+
   <h2 id="events">Events</h2>
-  <p>All events from <a href="http://getbootstrap.com/javascript/#popovers">Bootstrap Popover</a> are available but suffixed with <code>bs.confirmation</code>.</p>
-  
+  <p>All events from <a href="http://getbootstrap.com/javascript/#popovers">Bootstrap Popover</a> are available but
+    suffixed with <code>bs.confirmation</code>.</p>
+
   <div class="table-responsive">
     <table class="table table-bordered table-striped">
       <thead>
-       <tr>
-         <th style="width: 150px;">Event Type</th>
-         <th>Description</th>
-       </tr>
+      <tr>
+        <th style="width: 150px;">Event Type</th>
+        <th>Description</th>
+      </tr>
       </thead>
       <tbody>
-       <tr>
-         <td>confirmed.bs.confirmation</td>
-         <td>This event is fired when the "Ok" button is clicked.</td>
-       </tr>
-       <tr>
-         <td>canceled.bs.confirmation</td>
-         <td>This event is fired when the "Cancel" button is clicked.</td>
-       </tr>
+      <tr>
+        <td>confirmed.bs.confirmation</td>
+        <td>This event is fired when the "Ok" button is clicked.</td>
+      </tr>
+      <tr>
+        <td>canceled.bs.confirmation</td>
+        <td>This event is fired when the "Cancel" button is clicked.</td>
+      </tr>
       </tbody>
     </table>
   </div>
@@ -282,8 +426,39 @@ isHome: true
 
 <script src="{{site.github.url}}/dist/bootstrap-confirmation2/bootstrap-confirmation.min.js"></script>
 
+<style>
+  .popover {
+    max-width: 600px;
+  }
+</style>
+
 <script>
   $('[data-toggle=confirmation]').confirmation();
-  $('[data-toggle=confirmation-singleton]').confirmation({ singleton:true });
+  $('[data-toggle=confirmation-singleton]').confirmation({ singleton: true });
   $('[data-toggle=confirmation-popout]').confirmation({ popout: true });
+
+  $('[data-toggle=confirmation-custom]').confirmation({
+    buttons: [
+      {
+        label: 'Approved',
+        class: 'btn btn-xs btn-success',
+        icon: 'glyphicon glyphicon-ok'
+      },
+      {
+        label: 'Rejected',
+        class: 'btn btn-xs btn-danger',
+        icon: 'glyphicon glyphicon-remove'
+      },
+      {
+        label: 'Need review',
+        class: 'btn btn-xs btn-warning',
+        icon: 'glyphicon glyphicon-search'
+      },
+      {
+        label: 'Decide later',
+        class: 'btn btn-xs btn-default',
+        icon: 'glyphicon glyphicon-time'
+      }
+    ]
+  });
 </script>
