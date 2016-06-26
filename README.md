@@ -15,3 +15,4 @@ http://mistic100.github.io/Bootstrap-Confirmation
 - Bootstrap 3 compatible
 - Fix double event fires
 - Automatic handle of links (without need of custom callback)
+- Allow to define custom buttons
