@@ -19,7 +19,7 @@
     this.init(element, options);
   };
 
-  Confirmation.VERSION = '2.3.0';
+  Confirmation.VERSION = '2.3.1';
 
   Confirmation.DEFAULTS = $.extend({}, $.fn.popover.Constructor.DEFAULTS, {
     placement: 'top',
@@ -165,7 +165,6 @@
       ](content);
 
     $tip.on('click', function(e) {
-      e.preventDefault();
       e.stopPropagation();
     });
 
