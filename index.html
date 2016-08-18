@@ -160,7 +160,10 @@ isHome: true
   <h1 id="usage" class="page-header">Usage</h1>
 
   <p>Enable confirmations via JavaScript:</p>
-  {% highlight javascript %}$('[data-toggle=confirmation]').confirmation(options);{% endhighlight %}
+  {% highlight javascript %}$('[data-toggle=confirmation]').confirmation({
+  rootSelector: '[data-toggle=confirmation]',
+  // other options
+});{% endhighlight %}
 
   <div class="bs-callout bs-callout-danger">
     <h4>Declaration order</h4>
@@ -226,6 +229,14 @@ isHome: true
         <td>false</td>
         <td>Set <code>true</code> to hide the confirmation when user clicks outside of it.<br>
           This will affect all confirmations that use same selector.
+        </td>
+      </tr>
+      <tr>
+        <td>rootSelector</td>
+        <td>string</td>
+        <td></td>
+        <td><b>Required for jQuery >= 3 when using <i>singleton</i> or <i>popout</i>.</b><br>
+          The selector on which Confirmation is applied. This must be the same selector as provided to <code>$()</code>.
         </td>
       </tr>
       <tr>
