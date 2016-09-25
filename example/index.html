@@ -78,6 +78,14 @@
     </div>
 
     <div class="panel panel-default">
+      <div class="panel-heading">Delegation</div>
+      <div class="panel-body" id="confirmation-delegate">
+        <button class="btn btn-default">Confirmation 1</button>
+        <button class="btn btn-default">Confirmation 2</button>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
       <div class="panel-heading">Custom buttons</div>
       <div class="panel-body">
         <button class="btn btn-default" id="custom-confirmation">Choose your currency</button>
@@ -106,6 +114,10 @@
   $('[data-toggle=confirmation-popout]').confirmation({
     rootSelector: '[data-toggle=confirmation-popout]',
     container: 'body'
+  });
+
+  $('#confirmation-delegate').confirmation({
+    selector: 'button'
   });
 
   var currency = '';

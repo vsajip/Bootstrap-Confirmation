@@ -139,6 +139,16 @@
         }
       });
     }
+    else {
+      // cancel original event
+      this.$element.on(this.options.trigger, this.options.selector, function(e, ack) {
+        if (!ack) {
+          e.preventDefault();
+          e.stopPropagation();
+          e.stopImmediatePropagation();
+        }
+      });
+    }
 
     if (!this.options._isDelegate) {
       // manage popout
