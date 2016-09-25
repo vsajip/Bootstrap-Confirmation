@@ -1,13 +1,14 @@
 # Bootstrap-Confirmation
 
-[![Bower version](https://badge.fury.io/bo/bootstrap-confirmation2.svg)](http://badge.fury.io/bo/bootstrap-confirmation2)
+[![Bower version](https://img.shields.io/bower/v/bootstrap-confirmation2.svg?style=flat-square)](bootstrap-confirmation.js.org)
+[![NPM version](https://img.shields.io/npm/v/bootstrap-confirmation2.svg?style=flat-square)](https://www.npmjs.com/package/bootstrap-confirmation2)
 
 Bootstrap plugin for on-place confirm boxes using Popover.
 
 
 ## Documentation
 
-http://mistic100.github.io/Bootstrap-Confirmation
+bootstrap-confirmation.js.org
 
 
 ## Changes from original one
@@ -15,3 +16,4 @@ http://mistic100.github.io/Bootstrap-Confirmation
 - Bootstrap 3 compatible
 - Fix double event fires
 - Automatic handle of links (without need of custom callback)
+- Allow to define custom buttons
