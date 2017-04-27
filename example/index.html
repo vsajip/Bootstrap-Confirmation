@@ -125,30 +125,24 @@
     rootSelector: '#custom-confirmation',
     container: 'body',
     title: null,
-    onConfirm: function() {
+    onConfirm: function(currency) {
       alert('You choosed ' + currency);
     },
     buttons: [
       {
         class: 'btn btn-danger',
         icon: 'glyphicon glyphicon-usd',
-        onClick: function() {
-          currency = 'US Dollar';
-        }
+        value: 'US Dollar'
       },
       {
         class: 'btn btn-primary',
         icon: 'glyphicon glyphicon-euro',
-        onClick: function() {
-          currency = 'Euro';
-        }
+        value: 'Euro'
       },
       {
         class: 'btn btn-warning',
         icon: 'glyphicon glyphicon-bitcoin',
-        onClick: function() {
-          currency = 'Bitcoin';
-        }
+        value: 'Bitcoin'
       },
       {
         class: 'btn btn-default',

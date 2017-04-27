@@ -1,7 +1,7 @@
 /*!
  * Bootstrap Confirmation
  * Copyright 2013 Nimit Suwannagate <ethaizone@hotmail.com>
- * Copyright 2014-2016 Damien "Mistic" Sorel <contact@git.strangeplanet.fr>
+ * Copyright 2014-2017 Damien "Mistic" Sorel <contact@git.strangeplanet.fr>
  * Licensed under the Apache License, Version 2.0
  */
 
@@ -11,7 +11,9 @@
   var activeConfirmation;
 
   // Confirmation extends popover.js
-  if (!$.fn.popover) throw new Error('Confirmation requires popover.js');
+  if (!$.fn.popover) {
+    throw new Error('Confirmation requires popover.js');
+  }
 
   // CONFIRMATION PUBLIC CLASS DEFINITION
   // ===============================
@@ -224,12 +226,12 @@
               }
 
               if (button.cancel) {
-                self.getOnCancel.call(self).call(self.$element);
-                self.$element.trigger('canceled.bs.confirmation');
+                self.getOnCancel().call(self.$element, button.value);
+                self.$element.trigger('canceled.bs.confirmation', [button.value]);
               }
               else {
-                self.getOnConfirm.call(self).call(self.$element);
-                self.$element.trigger('confirmed.bs.confirmation');
+                self.getOnConfirm().call(self.$element, button.value);
+                self.$element.trigger('confirmed.bs.confirmation', [button.value]);
               }
 
               if (self.inState) { // Bootstrap 3.3.5
@@ -254,7 +256,7 @@
             e.preventDefault();
           }
 
-          self.getOnConfirm.call(self).call(self.$element);
+          self.getOnConfirm().call(self.$element);
           self.$element.trigger('confirmed.bs.confirmation');
 
           self.$element.trigger(self.options.trigger, [true]);
@@ -271,7 +273,7 @@
         .one('click', function(e) {
           e.preventDefault();
 
-          self.getOnCancel.call(self).call(self.$element);
+          self.getOnCancel().call(self.$element);
           self.$element.trigger('canceled.bs.confirmation');
 
           if (self.inState) { // Bootstrap 3.3.5
