@@ -14,14 +14,14 @@
       "homepage": "http://www.strangeplanet.fr"
     }
   ],
-  "main": "bootstrap-confirmation.js",
+  "main": "dist/bootstrap-confirmation.js",
   "keywords": [
     "bootstrap",
     "confirmation",
     "popup"
   ],
   "dependencies" : {
-    "bootstrap": ">=3.2.0 <4"
+    "bootstrap": ">=4.0.0"
   },
   "repository": {
     "type": "git",
