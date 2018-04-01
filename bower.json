@@ -1,7 +1,8 @@
 {
   "name": "bootstrap-confirmation2",
-  "homepage": "http://mistic100.github.io/Bootstrap-Confirmation",
+  "homepage": "http://bootstrap-confirmation.js.org",
   "description": "Bootstrap plugin for on-place confirm boxes using Popover",
+  "license": "Apache-2.0",
   "authors": [
     {
       "name": "Nimit Suwannagate",
@@ -20,9 +21,8 @@
     "popup"
   ],
   "dependencies" : {
-    "bootstrap": ">=3.2.0"
+    "bootstrap": ">=3.2.0 <4"
   },
-  "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "git://github.com/mistic100/Bootstrap-Confirmation.git"

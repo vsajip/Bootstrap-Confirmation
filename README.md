@@ -5,15 +5,20 @@
 
 Bootstrap plugin for on-place confirm boxes using Popover.
 
-
 ## Documentation
 
 [bootstrap-confirmation.js.org](http://bootstrap-confirmation.js.org)
 
+## Installation
 
-## Changes from original one
+#### Bootstrap 4
 
-- Bootstrap 3 compatible (3.2 minimum)
-- Fix double event fires
-- Automatic handle of links (without need of custom callback)
-- Allow to define custom buttons
+```
+npm install bootstrap-confirmation2
+```
+
+#### Bootstrap 3
+
+```
+npm install bootstrap-confirmation2@2.x.x
+```

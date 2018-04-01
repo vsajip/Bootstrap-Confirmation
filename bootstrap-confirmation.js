@@ -23,7 +23,7 @@
     this.init(element, options);
   };
 
-  Confirmation.VERSION = '2.4.0';
+  Confirmation.VERSION = '2.4.1';
 
   /**
    * Map between keyboard events "keyCode|which" and "key"

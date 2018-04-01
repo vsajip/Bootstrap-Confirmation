@@ -1,8 +1,9 @@
 {
   "name": "bootstrap-confirmation2",
-  "version": "2.4.0",
-  "homepage": "http://mistic100.github.io/Bootstrap-Confirmation",
+  "version": "2.4.1",
+  "homepage": "http://bootstrap-confirmation.js.org",
   "description": "Bootstrap plugin for on-place confirm boxes using Popover",
+  "license": "Apache-2.0",
   "authors": [
     {
       "name": "Nimit Suwannagate",
@@ -14,6 +15,15 @@
       "homepage": "http://www.strangeplanet.fr"
     }
   ],
+  "main": "bootstrap-confirmation.js",
+  "keywords": [
+    "bootstrap",
+    "confirmation",
+    "popup"
+  ],
+  "peerDependencies": {
+    "bootstrap": ">=3.2.0 <4"
+  },
   "devDependencies": {
     "grunt": "^1.0.0",
     "grunt-contrib-connect": "^1.0.0",
@@ -24,12 +34,6 @@
     "grunt-replace": "^1.0.1",
     "jit-grunt": "^0.10.0"
   },
-  "keywords": [
-    "bootstrap",
-    "confirmation",
-    "popup"
-  ],
-  "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "git://github.com/mistic100/Bootstrap-Confirmation.git"
