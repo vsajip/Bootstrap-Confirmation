@@ -1,12 +1,36 @@
+# username/repository
+id: mistic100/Bootstrap-Confirmation
 # name of the software
 name: Bootstrap Confirmation
 # current version of the software
-version: 2.4.0
-# url of the download button
-downloadUrl: https://github.com/mistic100/Bootstrap-Confirmation
+version: 4.0.0
+# links to file/dir viewers
+treeUrl: https://github.com/mistic100/Bootstrap-Confirmation/tree/master
+blobUrl: https://github.com/mistic100/Bootstrap-Confirmation/blob/master
+cdnUrl: https://cdn.jsdelivr.net/npm/bootstrap-confirmation2/dist
 # licence of the software
 license: Apache License v2.0
 licenseUrl: http://www.apache.org/licenses/LICENSE-2.0
+# extension of the favicon, blank to disable
+favicon:
+
+# download button
+# if download.popup is true, the download button will open a popup with several download options
+# otherwise it will simply open download.url and other options are ignored
+# if download.popup is true, any option is optional
+# download.cdn.img is optional
+download:
+  popup: true
+  url: https://github.com/mistic100/Bootstrap-Confirmation/archive/master.zip
+  bower: bootstrap-confirmation2
+  npm: bootstrap-confirmation2
+  cdn:
+    url: https://www.jsdelivr.com/package/npm/bootstrap-confirmation2
+    img: http://bootstrap-confirmation.js.org/assets/images/jsdelivr-logo.png
+    name: jsDelivr
+
+# set this to true to replace the generated header navbar by _includes/navbar.html
+customNavBar: false
 
 # list of additional links on the right of the top menu
 headerLinks:
@@ -28,6 +52,11 @@ header:
   color2: "#003354"
   trianglify: true
 
+# google analytics
+analytics:
+  account: UA-28192323-3
+  domain: mistic100.github.io
+
 # github button
 githubButton:
   user: mistic100
@@ -45,13 +74,5 @@ facebook:
   enabled: true
   profileUrl:
 
-# google analytics
-analytics:
-  account: UA-28192323-3
-  domain: mistic100.github.io
 
-
-# DON'T MODIFY
-highlighter: rouge
-
-exclude: ['README.md', 'Gemfile.lock', 'Gemfile']
+exclude: ['README.md', 'LICENSE', 'bower.json', 'Gemfile.lock', 'Gemfile']

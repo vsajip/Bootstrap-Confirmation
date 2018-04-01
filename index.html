@@ -18,29 +18,27 @@ isHome: true
 <section class="bs-docs-section">
   <h1 id="installation" class="page-header">Installation</h1>
 
-  <h3>CSS</h3>
-  <p>The plugin uses the default popover styling Bootstrap provides.</p>
-
-  <h3>JS Dependencies</h3>
+  <h3>Dependencies</h3>
   <ul>
-    <li><a href="http://jquery.com">jQuery >= 1.9</a></li>
-    <li><a href="http://getbootstrap.com">Bootstrap Popover >= 3.2</a> (included in bootstrap.js)</li>
+    <li><a href="https://jquery.com">jQuery</a></li>
+    <li><a href="https://popper.js.org">Popper.js</a> (for Bootstrap 4)</li>
+    <li><a href="https://getbootstrap.com/docs/4.0">Bootstrap 4</a> or <a href="https://getbootstrap.com/docs/3.3/">Bootstrap 3</a></li>
   </ul>
 
+  <p>The plugin uses the default Popover styling Bootstrap provides.</p>
+
   <h3>Let's go!</h3>
-  <p>Download <a
-    href="http://raw.githubusercontent.com/mistic100/Bootstrap-Confirmation/master/bootstrap-confirmation.min.js">bootstrap-confirmation.js</a>
-    and include it after <code>jquery.js</code> and <code>bootstrap.js</code>.</p>
+  <p>Include <a href="{{site.cdnUrl}}/js/bootstrap-confirmation.min.js" target="_blank"><i
+    class="glyphicon glyphicon-file"></i> bootstrap-confirmation.js</a> in your page after the dependencies.</p>
 
   <!-- @formatter:off -->
 {% highlight html %}
 <script src="path/to/jquery.js"></script>
+<script src="path/to/popper.js"></script>
 <script src="path/to/bootstrap.js"></script>
 <script src="path/to/bootstrap-confirmation.js"></script>
 {% endhighlight %}
 <!-- @formatter:on -->
-
-  <p>It is also available on Bower under the name <code>bootstrap-confirmation2</code>.</p>
 </section>
 
 <section class="bs-docs-section">
@@ -86,10 +84,10 @@ isHome: true
   <!-- @formatter:off -->
 {% highlight html %}
 <button class="btn btn-large btn-primary" data-toggle="confirmation"
-        data-btn-ok-label="Continue" data-btn-ok-icon="glyphicon glyphicon-share-alt"
-        data-btn-ok-class="btn-success"
-        data-btn-cancel-label="Stoooop!" data-btn-cancel-icon="glyphicon glyphicon-ban-circle"
-        data-btn-cancel-class="btn-danger"
+        data-btn-ok-label="Continue" data-btn-ok-class="btn-success"
+        data-btn-ok-icon-class="material-icons" data-btn-ok-icon-content="check"
+        data-btn-cancel-label="Stoooop!" data-btn-cancel-class="btn-danger"
+        data-btn-cancel-icon-class="material-icons" data-btn-cancel-icon-content="close"
         data-title="Is it ok?" data-content="This might be dangerous">
   Confirmation
 </button>
@@ -147,7 +145,7 @@ isHome: true
   <h3 id="ex-custom-buttons">Custom buttons</h3>
   <p>Completely overwrite the default positive/negative buttons with the buttons of your choice.</p>
   <div class="bs-example">
-    <button class="btn btn-primary" data-toggle="confirmation-custom" data-title="Approve item ?">Confirmation</button>
+    <button class="btn btn-primary" data-toggle="confirmation-custom">Confirmation</button>
   </div>
   <!-- @formatter:off -->
 {% highlight html %}
@@ -183,7 +181,7 @@ isHome: true
   <h2 id="options">Options</h2>
   <p>Options can be passed via data attributes or JavaScript plain object. For data attributes, append the option name
     to <code>data-</code>, as in <code>data-btn-ok-class=""</code>.</p>
-  <p>All options from <a href="http://getbootstrap.com/javascript/#popovers">Bootstrap Popover</a> can be used except
+  <p>All options from <a href="https://getbootstrap.com/docs/4.0/components/popovers">Bootstrap Popover</a> can be used except
     <code>trigger</code>.</p>
 
   <div class="table-responsive">
@@ -246,34 +244,28 @@ isHome: true
         <td>List of attributes that will be copied from the main element to the Confirm button.</td>
       </tr>
       <tr>
-        <td>btnOkClass</td>
-        <td>string</td>
-        <td>'btn-xs btn-primary'</td>
-        <td>Class of the "Ok" button.</td>
-      </tr>
-      <tr>
-        <td>btnOkIcon</td>
-        <td>string</td>
-        <td>'glyphicon glyphicon-ok'</td>
-        <td>Icon class of the "Ok" button.</td>
-      </tr>
-      <tr>
         <td>btnOkLabel</td>
         <td>string</td>
         <td>'Yes'</td>
         <td>Label of the "Ok" button.</td>
       </tr>
       <tr>
-        <td>btnCancelClass</td>
+        <td>btnOkClass</td>
         <td>string</td>
-        <td>'btn-xs btn-default'</td>
-        <td>Class of the "Cancel" button.</td>
+        <td>'btn-primary'</td>
+        <td>Class of the "Ok" button.</td>
       </tr>
       <tr>
-        <td>btnCancelIcon</td>
+        <td>btnOkIconClass</td>
         <td>string</td>
-        <td>'glyphicon glyphicon-remove'</td>
-        <td>Icon class of the "Cancel" button.</td>
+        <td></td>
+        <td>Icon class of the "Ok" button.</td>
+      </tr>
+      <tr>
+        <td>btnOkIconContent</td>
+        <td>string</td>
+        <td></td>
+        <td>Icon content of the "Ok" button.</td>
       </tr>
       <tr>
         <td>btnCancelLabel</td>
@@ -282,11 +274,29 @@ isHome: true
         <td>Label of the "Cancel" button.</td>
       </tr>
       <tr>
+        <td>btnCancelClass</td>
+        <td>string</td>
+        <td>'btn-default'</td>
+        <td>Class of the "Cancel" button.</td>
+      </tr>
+      <tr>
+        <td>btnCancelIconClass</td>
+        <td>string</td>
+        <td></td>
+        <td>Icon class of the "Cancel" button.</td>
+      </tr>
+      <tr>
+        <td>btnCancelIconContent</td>
+        <td>string</td>
+        <td></td>
+        <td>Icon content of the "Cancel" button.</td>
+      </tr>
+      <tr>
         <td>onConfirm</td>
         <td>function</td>
         <td>$.noop</td>
         <td>Callback called when the "Ok" button is clicked.<br>
-          In <code>data-on-confirm</code> you can give the name of a function like <code>myConfirm</code> or <code>myObject.confirm</code>.
+          <i>Not compatible with the <code>data-</code> API</i>.
         </td>
       </tr>
       <tr>
@@ -294,14 +304,16 @@ isHome: true
         <td>function</td>
         <td>$.noop</td>
         <td>Callback called when the "Cancel" button is clicked.<br>
-          In <code>data-on-cancel</code> you can give the name of a function like <code>myCancel</code> or <code>myObject.cancel</code>.
+          <i>Not compatible with the <code>data-</code> API</i>.
         </td>
       </tr>
       <tr>
         <td>buttons</td>
         <td>object[]</td>
         <td></td>
-        <td>Configuration of <a href="#custom-buttons">custom buttons</a>.</td>
+        <td>Configuration of <a href="#custom-buttons">custom buttons</a>.<br>
+          <i>Not compatible with the <code>data-</code> API</i>.
+        </td>
       </tr>
       </tbody>
     </table>
@@ -341,16 +353,28 @@ isHome: true
         <td>Label of the button.</td>
       </tr>
       <tr>
+        <td>value</td>
+        <td>*</td>
+        <td></td>
+        <td>Custom value that will be passed to the callbacks and events.</td>
+      </tr>
+      <tr>
         <td>class</td>
         <td>string</td>
         <td>'btn btn-xs btn-default'</td>
         <td>Class of the button.</td>
       </tr>
       <tr>
-        <td>icon</td>
+        <td>iconClass</td>
         <td>string</td>
         <td></td>
         <td>Icon class of the button.</td>
+      </tr>
+      <tr>
+        <td>iconContent</td>
+        <td>string</td>
+        <td></td>
+        <td>Icon content of the button.</td>
       </tr>
       <tr>
         <td>attr</td>
@@ -378,37 +402,39 @@ isHome: true
 <!-- @formatter:off -->
 {% highlight javascript %}
 {
-  onConfirm: function() {
-    alert('You choosed ' + currency);
+  onConfirm: function(value) {
+    alert('You choosed ' + value);
   },
   onCancel: function() {
-    alert('You didn\'t choose');
+    alert('You didn\'t choose anything');
   },
   buttons: [
     {
       class: 'btn btn-danger',
-      icon: 'glyphicon glyphicon-usd',
-      onClick: function() {
-        currency = 'US Dollar';
-      }
+      iconClass: 'material-icons mr-1',
+      iconContent: 'directions_railway',
+      label: 'Railway',
+      value: 'Railway'
     },
     {
       class: 'btn btn-primary',
-      icon: 'glyphicon glyphicon-euro',
-      onClick: function() {
-        currency = 'Euro';
-      }
+      iconClass: 'material-icons mr-1',
+      iconContent: 'directions_car',
+      label: 'Car',
+      value: 'Car'
     },
     {
       class: 'btn btn-warning',
-      icon: 'glyphicon glyphicon-bitcoin',
-      onClick: function() {
-        currency = 'Bitcoin';
-      }
+      iconClass: 'material-icons mr-1',
+      iconContent: 'directions_boat',
+      label: 'Boat',
+      value: 'Boat'
     },
     {
-      class: 'btn btn-default',
-      icon: 'glyphicon glyphicon-remove',
+      class: 'btn btn-secondary',
+      iconClass: 'material-icons mr-1',
+      iconContent: 'cancel',
+      label: 'Cancel',
       cancel: true
     }
   ]
@@ -430,12 +456,12 @@ isHome: true
   <p>Toggles an elements confirmation.</p>
   {% highlight javascript %}$('#element').confirmation('toggle');{% endhighlight %}
 
-  <h4>.confirmation('destroy')</h4>
+  <h4>.confirmation('dispose')</h4>
   <p>Hides and destroys an element's confirmation.</p>
-  {% highlight javascript %}$('#element').confirmation('destroy');{% endhighlight %}
+  {% highlight javascript %}$('#element').confirmation('dispose');{% endhighlight %}
 
   <h2 id="events">Events</h2>
-  <p>All events from <a href="http://getbootstrap.com/javascript/#popovers">Bootstrap Popover</a> are available but
+  <p>All events from <a href="https://getbootstrap.com/docs/4.0/components/popovers/#events">Bootstrap Popover</a> are available but
     suffixed with <code>bs.confirmation</code>.</p>
 
   <div class="table-responsive">
@@ -474,6 +500,8 @@ isHome: true
   $('[data-toggle=confirmation-popout]').confirmation({ popout: true });
 
   $('[data-toggle=confirmation-custom]').confirmation({
+    title: 'Approve item ?',
+    content: 'An email will be sent to the item owner.',
     buttons: [
       {
         label: 'Approved',
