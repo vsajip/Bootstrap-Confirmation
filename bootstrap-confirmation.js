@@ -18,8 +18,6 @@
   // CONFIRMATION PUBLIC CLASS DEFINITION
   // ===============================
   var Confirmation = function(element, options) {
-    options.trigger = 'click';
-
     this.init(element, options);
   };
 
@@ -38,6 +36,8 @@
   Confirmation.DEFAULTS = $.extend({}, $.fn.popover.Constructor.DEFAULTS, {
     placement: 'top',
     title: 'Are you sure?',
+    trigger: 'click',
+    confirmationEvent: undefined,
     popout: false,
     singleton: false,
     copyAttributes: 'href target',
@@ -102,6 +102,10 @@
     }
     else { // standalone
       this.options._selector = options.rootSelector;
+    }
+
+    if (this.options.confirmationEvent === undefined) {
+      this.options.confirmationEvent = this.options.trigger;
     }
 
     var self = this;
@@ -259,7 +263,7 @@
           self.getOnConfirm().call(self.$element);
           self.$element.trigger('confirmed.bs.confirmation');
 
-          self.$element.trigger(self.options.trigger, [true]);
+          self.$element.trigger(self.options.confirmationEvent, [true]);
 
           self.hide();
         });

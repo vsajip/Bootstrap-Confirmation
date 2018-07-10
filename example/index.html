@@ -86,6 +86,17 @@
     </div>
 
     <div class="panel panel-default">
+      <div class="panel-heading">Custom event</div>
+      <div class="panel-body">
+        <button class="btn btn-default" data-toggle="custom-confirmation-events"
+                data-trigger="manual"
+                data-confirmation-event="myevent">
+          Confirmation
+        </button>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
       <div class="panel-heading">Custom buttons</div>
       <div class="panel-body">
         <button class="btn btn-default" id="custom-confirmation">Choose your currency</button>
@@ -119,6 +130,18 @@
   $('#confirmation-delegate').confirmation({
     selector: 'button'
   });
+
+  $('[data-toggle=custom-confirmation-events]')
+    .confirmation({
+      rootSelector: '[data-toggle=custom-confirmation-events]',
+      container: 'body'
+    })
+    .on('mouseenter', function() {
+      $(this).confirmation('show');
+    })
+    .on('myevent', function() {
+      alert('"myevent" triggered');
+    });
 
   var currency = '';
   $('#custom-confirmation').confirmation({
