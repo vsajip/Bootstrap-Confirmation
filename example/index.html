@@ -94,6 +94,17 @@
     </div>
 
     <div class="card mb-3">
+      <div class="card-header">Custom event</div>
+      <div class="card-body">
+        <button class="btn btn-primary" data-toggle="custom-confirmation-events"
+                data-trigger="manual"
+                data-confirmation-event="myevent">
+          Confirmation
+        </button>
+      </div>
+    </div>
+
+    <div class="card mb-3">
       <div class="card-header">Custom buttons</div>
       <div class="card-body">
         <button class="btn btn-primary" id="custom-confirmation">Choose your transportation</button>
@@ -129,6 +140,18 @@
   $('#confirmation-delegate').confirmation({
     selector: 'button'
   });
+
+  $('[data-toggle=custom-confirmation-events]')
+    .confirmation({
+      rootSelector: '[data-toggle=custom-confirmation-events]',
+      container: 'body'
+    })
+    .on('mouseenter', function() {
+      $(this).confirmation('show');
+    })
+    .on('myevent', function() {
+      alert('"myevent" triggered');
+    });
 
   $('#custom-confirmation').confirmation({
     rootSelector: '#custom-confirmation',

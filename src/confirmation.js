@@ -39,6 +39,7 @@ const Default = {
   placement           : 'top',
   title               : 'Are you sure?',
   trigger             : 'click',
+  confirmationEvent   : undefined,
   content             : '',
   singleton           : false,
   popout              : false,
@@ -171,6 +172,10 @@ class Confirmation extends Popover {
     }
     else { // standalone
       this.config._selector = config.rootSelector;
+    }
+
+    if (this.config.confirmationEvent === undefined) {
+      this.config.confirmationEvent = this.config.trigger;
     }
 
     if (!this.config.selector) {
@@ -334,7 +339,7 @@ class Confirmation extends Popover {
 
         self.config.onConfirm.call(self.element);
         $(self.element).trigger(Event.CONFIRMED);
-        $(self.element).trigger(self.config.trigger, [true]);
+        $(self.element).trigger(self.config.confirmationEvent, [true]);
 
         self.hide();
       });
