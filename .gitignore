@@ -2,9 +2,9 @@
 /*.iml
 /_site
 /Gemfile.lock
-/bower_components
-/node_modules
+package-lock.json
 
-# commit minimum dependencies
-/dist/bootstrap
-/dist/jquery
+/node_modules/*
+!/node_modules/bootstrap-confirmation2
+/node_modules/bootstrap-confirmation2/*
+!/node_modules/bootstrap-confirmation2/bootstrap-confirmation.min.js

@@ -1,0 +1,19 @@
+{
+  "name": "bootstrap-confirmation-doc",
+  "version": "1.0.0",
+  "description": "Bootstrap Confirmation documentation",
+  "author": {
+    "name": "Damien \"Mistic\" Sorel",
+    "email": "contact@git.strangeplanet.fr",
+    "homepage": "https://www.strangeplanet.fr"
+  },
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "bootstrap-confirmation2": "2.x.x"
+  },
+  "scripts": {
+    "postinstall": "bundle install",
+    "serve": "bundle exec jekyll serve"
+  }
+}

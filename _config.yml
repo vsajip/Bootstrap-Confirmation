@@ -3,7 +3,7 @@ id: mistic100/Bootstrap-Confirmation
 # name of the software
 name: Bootstrap Confirmation
 # current version of the software
-version: 4.0.0
+version: 2.4.2/4.0.1
 # links to file/dir viewers
 treeUrl: https://github.com/mistic100/Bootstrap-Confirmation/tree/master
 blobUrl: https://github.com/mistic100/Bootstrap-Confirmation/blob/master
@@ -22,6 +22,7 @@ favicon:
 download:
   popup: true
   url: https://github.com/mistic100/Bootstrap-Confirmation/archive/master.zip
+  url2: https://github.com/mistic100/Bootstrap-Confirmation/archive/v2.zip
   bower: bootstrap-confirmation2
   npm: bootstrap-confirmation2
   cdn:
@@ -75,4 +76,4 @@ facebook:
   profileUrl:
 
 
-exclude: ['README.md', 'LICENSE', 'bower.json', 'Gemfile.lock', 'Gemfile']
+exclude: ['README.md', 'LICENSE', 'Gemfile.lock', 'Gemfile']
