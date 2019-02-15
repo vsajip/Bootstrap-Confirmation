@@ -74,6 +74,10 @@ const Default = {
   // @formatter:on
 };
 
+if (Default.whiteList) {
+  Default.whiteList['*'].push('data-apply', 'data-dismiss');
+}
+
 const ClassName = {
   FADE: 'fade',
   SHOW: 'show',
