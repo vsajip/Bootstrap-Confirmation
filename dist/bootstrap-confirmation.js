@@ -1,5 +1,5 @@
 /*!
- * Bootstrap Confirmation (v4.0.3)
+ * Bootstrap Confirmation (v4.0.4)
  * @copyright 2013 Nimit Suwannagate <ethaizone@hotmail.com>
  * @copyright 2014-2018 Damien "Mistic" Sorel <contact@git.strangeplanet.fr>
  * @licence Apache License, Version 2.0
@@ -81,7 +81,7 @@
    */
 
   var NAME = 'confirmation';
-  var VERSION = '4.0.3';
+  var VERSION = '4.0.4';
   var DATA_KEY = "bs." + NAME;
   var EVENT_KEY = "." + DATA_KEY;
   var JQUERY_NO_CONFLICT = $.fn[NAME];
@@ -373,7 +373,7 @@
         $(this.element).on(Event.SHOWN, function () {
           if (self.config.popout && !self.eventBody) {
             self.eventBody = $('body').on(Event.CLICK + "." + self.uid, function (e) {
-              if ($(self.config._selector).is(e.target)) {
+              if ($(self.config._selector).is(e.target) || $(self.config._selector).has(e.target).length > 0) {
                 return;
               } // close all popover already initialized
 
