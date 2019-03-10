@@ -300,7 +300,7 @@ class Confirmation extends Popover {
       $(this.element).on(Event.SHOWN, () => {
         if (self.config.popout && !self.eventBody) {
           self.eventBody = $('body').on(`${Event.CLICK}.${self.uid}`, (e) => {
-            if ($(self.config._selector).is(e.target)) {
+            if ($(self.config._selector).is(e.target) || $(self.config._selector).has(e.target).length > 0) {
               return;
             }
             // close all popover already initialized
