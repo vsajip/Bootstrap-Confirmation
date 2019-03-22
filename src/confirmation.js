@@ -12,7 +12,8 @@ const VERSION = '4.0.4';
 const DATA_KEY = `bs.${NAME}`;
 const EVENT_KEY = `.${DATA_KEY}`;
 const JQUERY_NO_CONFLICT = $.fn[NAME];
-const BTN_CLASS_DEFAULT = 'btn btn-sm h-100 d-flex align-items-center';
+const BTN_CLASS_BASE = 'h-100 d-flex align-items-center';
+const BTN_CLASS_DEFAULT = 'btn btn-sm';
 
 const DefaultType = {
   ...Popover.DefaultType,
@@ -46,17 +47,16 @@ const Default = {
   copyAttributes      : 'href target',
   onConfirm           : $.noop,
   onCancel            : $.noop,
-  btnOkClass          : 'btn-primary',
+  btnOkClass          : `${BTN_CLASS_DEFAULT} btn-primary`,
   btnOkLabel          : 'Yes',
   btnOkIconClass      : '',
   btnOkIconContent    : '',
-  btnCancelClass      : 'btn-secondary',
+  btnCancelClass      : `${BTN_CLASS_DEFAULT} btn-secondary`,
   btnCancelLabel      : 'No',
   btnCancelIconClass  : '',
   btnCancelIconContent: '',
   buttons             : [],
   // @formatter:off
-  // href="#" allows the buttons to be focused
   template            : `
 <div class="popover confirmation">
   <div class="arrow"></div>
@@ -64,10 +64,7 @@ const Default = {
   <div class="popover-body">
     <p class="confirmation-content"></p>
     <div class="confirmation-buttons text-center">
-      <div class="btn-group">
-        <a href="#" class="${BTN_CLASS_DEFAULT}" data-apply="confirmation"></a>
-        <a href="#" class="${BTN_CLASS_DEFAULT}" data-dismiss="confirmation"></a>
-      </div>
+      <div class="btn-group"></div>
     </div>
   </div>
 </div>`,
@@ -84,11 +81,9 @@ const ClassName = {
 };
 
 const Selector = {
-  TITLE      : '.popover-header',
-  CONTENT    : '.confirmation-content',
-  BUTTONS    : '.confirmation-buttons .btn-group',
-  BTN_APPLY  : '[data-apply=confirmation]',
-  BTN_DISMISS: '[data-dismiss=confirmation]',
+  TITLE  : '.popover-header',
+  CONTENT: '.confirmation-content',
+  BUTTONS: '.confirmation-buttons .btn-group',
 };
 
 const Keymap = {
@@ -211,7 +206,7 @@ class Confirmation extends Popover {
     }
 
     if (this.config.buttons.length > 0) {
-      this._setCustomButtons($tip);
+      this._setButtons($tip, this.config.buttons);
     }
     else {
       this._setStandardButtons($tip);
@@ -322,66 +317,40 @@ class Confirmation extends Popover {
    * @private
    */
   _setStandardButtons($tip) {
-    const self = this;
+    const buttons = [
+      {
+        class      : this.config.btnOkClass,
+        label      : this.config.btnOkLabel,
+        iconClass  : this.config.btnOkIconClass,
+        iconContent: this.config.btnOkIconContent,
+        attr       : this.config._attributes,
+      },
+      {
+        class      : this.config.btnCancelClass,
+        label      : this.config.btnCancelLabel,
+        iconClass  : this.config.btnCancelIconClass,
+        iconContent: this.config.btnCancelIconContent,
+        cancel     : true,
+      },
+    ];
 
-    const btnApply = $tip.find(Selector.BTN_APPLY)
-      .addClass(this.config.btnOkClass)
-      .html(this.config.btnOkLabel)
-      .attr(this.config._attributes);
-
-    if (this.config.btnOkIconClass || this.config.btnOkIconContent) {
-      btnApply.prepend($('<i></i>')
-        .addClass(this.config.btnOkIconClass || '')
-        .text(this.config.btnOkIconContent || ''));
-    }
-
-    btnApply.off('click')
-      .one('click', function (e) {
-        if ($(this).attr('href') === '#') {
-          e.preventDefault();
-        }
-
-        self.config.onConfirm.call(self.element);
-        $(self.element).trigger(Event.CONFIRMED);
-        $(self.element).trigger(self.config.confirmationEvent, [true]);
-
-        self.hide();
-      });
-
-    const btnDismiss = $tip.find(Selector.BTN_DISMISS)
-      .addClass(this.config.btnCancelClass)
-      .html(this.config.btnCancelLabel);
-
-    if (this.config.btnCancelIconClass || this.config.btnCancelIconContent) {
-      btnDismiss.prepend($('<i></i>')
-        .addClass(this.config.btnCancelIconClass || '')
-        .text(this.config.btnCancelIconContent || ''));
-    }
-
-    btnDismiss.off('click')
-      .one('click', (e) => {
-        e.preventDefault();
-
-        self.config.onCancel.call(self.element);
-        $(self.element).trigger(Event.CANCELED);
-
-        self.hide();
-      });
+    this._setButtons($tip, buttons);
   }
 
   /**
-   * Init the custom buttons
+   * Init the buttons
    * @param $tip
+   * @param buttons
    * @private
    */
-  _setCustomButtons($tip) {
+  _setButtons($tip, buttons) {
     const self = this;
     const $group = $tip.find(Selector.BUTTONS).empty();
 
-    this.config.buttons.forEach((button) => {
+    buttons.forEach((button) => {
       const btn = $('<a href="#"></a>')
-        .addClass(BTN_CLASS_DEFAULT)
-        .addClass(button.class || 'btn btn-secondary')
+        .addClass(BTN_CLASS_BASE)
+        .addClass(button.class || `${BTN_CLASS_DEFAULT} btn-secondary`)
         .html(button.label || '')
         .attr(button.attr || {});
 
@@ -407,6 +376,7 @@ class Confirmation extends Popover {
         else {
           self.config.onConfirm.call(self.element, button.value);
           $(self.element).trigger(Event.CONFIRMED, [button.value]);
+          $(self.element).trigger(self.config.confirmationEvent, [true]);
         }
 
         self.hide();
