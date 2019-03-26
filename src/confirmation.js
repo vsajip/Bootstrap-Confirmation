@@ -8,7 +8,7 @@ import Popover from 'bootstrap/js/src/popover';
  */
 
 const NAME = 'confirmation';
-const VERSION = '4.0.4';
+const VERSION = '$VERSION';
 const DATA_KEY = `bs.${NAME}`;
 const EVENT_KEY = `.${DATA_KEY}`;
 const JQUERY_NO_CONFLICT = $.fn[NAME];

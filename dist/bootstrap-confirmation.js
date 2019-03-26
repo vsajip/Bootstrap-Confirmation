@@ -1,5 +1,5 @@
 /*!
- * Bootstrap Confirmation (v4.0.4)
+ * Bootstrap Confirmation (v4.1.0)
  * @copyright 2013 Nimit Suwannagate <ethaizone@hotmail.com>
  * @copyright 2014-2018 Damien "Mistic" Sorel <contact@git.strangeplanet.fr>
  * @licence Apache License, Version 2.0
@@ -81,11 +81,12 @@
    */
 
   var NAME = 'confirmation';
-  var VERSION = '4.0.4';
+  var VERSION = '4.1.0';
   var DATA_KEY = "bs." + NAME;
   var EVENT_KEY = "." + DATA_KEY;
   var JQUERY_NO_CONFLICT = $.fn[NAME];
-  var BTN_CLASS_DEFAULT = 'btn btn-sm h-100 d-flex align-items-center';
+  var BTN_CLASS_BASE = 'h-100 d-flex align-items-center';
+  var BTN_CLASS_DEFAULT = 'btn btn-sm';
 
   var DefaultType = _objectSpread({}, Popover.DefaultType, {
     singleton: 'boolean',
@@ -117,18 +118,17 @@
     copyAttributes: 'href target',
     onConfirm: $.noop,
     onCancel: $.noop,
-    btnOkClass: 'btn-primary',
+    btnOkClass: BTN_CLASS_DEFAULT + " btn-primary",
     btnOkLabel: 'Yes',
     btnOkIconClass: '',
     btnOkIconContent: '',
-    btnCancelClass: 'btn-secondary',
+    btnCancelClass: BTN_CLASS_DEFAULT + " btn-secondary",
     btnCancelLabel: 'No',
     btnCancelIconClass: '',
     btnCancelIconContent: '',
     buttons: [],
     // @formatter:off
-    // href="#" allows the buttons to be focused
-    template: "\n<div class=\"popover confirmation\">\n  <div class=\"arrow\"></div>\n  <h3 class=\"popover-header\"></h3>\n  <div class=\"popover-body\">\n    <p class=\"confirmation-content\"></p>\n    <div class=\"confirmation-buttons text-center\">\n      <div class=\"btn-group\">\n        <a href=\"#\" class=\"" + BTN_CLASS_DEFAULT + "\" data-apply=\"confirmation\"></a>\n        <a href=\"#\" class=\"" + BTN_CLASS_DEFAULT + "\" data-dismiss=\"confirmation\"></a>\n      </div>\n    </div>\n  </div>\n</div>" // @formatter:on
+    template: "\n<div class=\"popover confirmation\">\n  <div class=\"arrow\"></div>\n  <h3 class=\"popover-header\"></h3>\n  <div class=\"popover-body\">\n    <p class=\"confirmation-content\"></p>\n    <div class=\"confirmation-buttons text-center\">\n      <div class=\"btn-group\"></div>\n    </div>\n  </div>\n</div>" // @formatter:on
 
   });
 
@@ -143,9 +143,7 @@
   var Selector = {
     TITLE: '.popover-header',
     CONTENT: '.confirmation-content',
-    BUTTONS: '.confirmation-buttons .btn-group',
-    BTN_APPLY: '[data-apply=confirmation]',
-    BTN_DISMISS: '[data-dismiss=confirmation]'
+    BUTTONS: '.confirmation-buttons .btn-group'
   };
   var Keymap = {
     13: 'Enter',
@@ -283,7 +281,7 @@
       }
 
       if (this.config.buttons.length > 0) {
-        this._setCustomButtons($tip);
+        this._setButtons($tip, this.config.buttons);
       } else {
         this._setStandardButtons($tip);
       }
@@ -294,6 +292,9 @@
     };
 
     _proto.dispose = function dispose() {
+      $('body').off(Event.CLICK + "." + this.uid);
+      this.eventBody = false;
+
       this._cleanKeyupEvent();
 
       _Popover.prototype.dispose.call(this);
@@ -396,48 +397,35 @@
     ;
 
     _proto._setStandardButtons = function _setStandardButtons($tip) {
-      var self = this;
-      var btnApply = $tip.find(Selector.BTN_APPLY).addClass(this.config.btnOkClass).html(this.config.btnOkLabel).attr(this.config._attributes);
+      var buttons = [{
+        class: this.config.btnOkClass,
+        label: this.config.btnOkLabel,
+        iconClass: this.config.btnOkIconClass,
+        iconContent: this.config.btnOkIconContent,
+        attr: this.config._attributes
+      }, {
+        class: this.config.btnCancelClass,
+        label: this.config.btnCancelLabel,
+        iconClass: this.config.btnCancelIconClass,
+        iconContent: this.config.btnCancelIconContent,
+        cancel: true
+      }];
 
-      if (this.config.btnOkIconClass || this.config.btnOkIconContent) {
-        btnApply.prepend($('<i></i>').addClass(this.config.btnOkIconClass || '').text(this.config.btnOkIconContent || ''));
-      }
-
-      btnApply.off('click').one('click', function (e) {
-        if ($(this).attr('href') === '#') {
-          e.preventDefault();
-        }
-
-        self.config.onConfirm.call(self.element);
-        $(self.element).trigger(Event.CONFIRMED);
-        $(self.element).trigger(self.config.confirmationEvent, [true]);
-        self.hide();
-      });
-      var btnDismiss = $tip.find(Selector.BTN_DISMISS).addClass(this.config.btnCancelClass).html(this.config.btnCancelLabel);
-
-      if (this.config.btnCancelIconClass || this.config.btnCancelIconContent) {
-        btnDismiss.prepend($('<i></i>').addClass(this.config.btnCancelIconClass || '').text(this.config.btnCancelIconContent || ''));
-      }
-
-      btnDismiss.off('click').one('click', function (e) {
-        e.preventDefault();
-        self.config.onCancel.call(self.element);
-        $(self.element).trigger(Event.CANCELED);
-        self.hide();
-      });
+      this._setButtons($tip, buttons);
     }
     /**
-     * Init the custom buttons
+     * Init the buttons
      * @param $tip
+     * @param buttons
      * @private
      */
     ;
 
-    _proto._setCustomButtons = function _setCustomButtons($tip) {
+    _proto._setButtons = function _setButtons($tip, buttons) {
       var self = this;
       var $group = $tip.find(Selector.BUTTONS).empty();
-      this.config.buttons.forEach(function (button) {
-        var btn = $('<a href="#"></a>').addClass(BTN_CLASS_DEFAULT).addClass(button.class || 'btn btn-secondary').html(button.label || '').attr(button.attr || {});
+      buttons.forEach(function (button) {
+        var btn = $('<a href="#"></a>').addClass(BTN_CLASS_BASE).addClass(button.class || BTN_CLASS_DEFAULT + " btn-secondary").html(button.label || '').attr(button.attr || {});
 
         if (button.iconClass || button.iconContent) {
           btn.prepend($('<i></i>').addClass(button.iconClass || '').text(button.iconContent || ''));
@@ -458,6 +446,7 @@
           } else {
             self.config.onConfirm.call(self.element, button.value);
             $(self.element).trigger(Event.CONFIRMED, [button.value]);
+            $(self.element).trigger(self.config.confirmationEvent, [true]);
           }
 
           self.hide();

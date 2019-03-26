@@ -12,7 +12,7 @@ export default {
     globals  : {
       'jquery': 'jQuery'
     },
-    banner: `/*!
+    banner   : `/*!
  * Bootstrap Confirmation (v${pkg.version})
  * @copyright 2013 Nimit Suwannagate <ethaizone@hotmail.com>
  * @copyright 2014-2018 Damien "Mistic" Sorel <contact@git.strangeplanet.fr>
@@ -27,6 +27,7 @@ export default {
     replace({
       delimiters: ['', ''],
 
+      '$VERSION'                                         : pkg.version,
       'import Popover from \'bootstrap/js/src/popover\';': 'import Popover from \'./popover\';',
       'export default Confirmation;'                     : ''
     }),
