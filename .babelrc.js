@@ -3,13 +3,17 @@ module.exports = {
     [
       '@babel/env',
       {
-        loose  : true,
-        modules: false,
+        loose: true,
         exclude: ['transform-typeof-symbol']
       }
     ]
   ],
   plugins: [
-    '@babel/proposal-object-rest-spread'
+    [
+      '@babel/proposal-object-rest-spread',
+      {
+        loose: true
+      }
+    ]
   ]
 };

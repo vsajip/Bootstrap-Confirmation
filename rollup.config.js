@@ -8,6 +8,7 @@ export default {
     format   : 'umd',
     name     : 'bootstrap-confirmation',
     sourcemap: true,
+    interop  : false,
     exports  : 'none',
     globals  : {
       'jquery': 'jQuery'
@@ -15,7 +16,7 @@ export default {
     banner   : `/*!
  * Bootstrap Confirmation (v${pkg.version})
  * @copyright 2013 Nimit Suwannagate <ethaizone@hotmail.com>
- * @copyright 2014-2018 Damien "Mistic" Sorel <contact@git.strangeplanet.fr>
+ * @copyright 2014-${(new Date()).getFullYear()} Damien "Mistic" Sorel <contact@git.strangeplanet.fr>
  * @licence Apache License, Version 2.0
  */`
   },
