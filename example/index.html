@@ -61,8 +61,7 @@
       <div class="card-body">
         <button class="btn btn-primary" data-toggle="confirmation" data-placement="left">Confirmation on left</button>
         <button class="btn btn-primary" data-toggle="confirmation" data-placement="top">Confirmation on top</button>
-        <button class="btn btn-primary" data-toggle="confirmation" data-placement="bottom">Confirmation on bottom
-        </button>
+        <button class="btn btn-primary" data-toggle="confirmation" data-placement="bottom">Confirmation on bottom</button>
         <button class="btn btn-primary" data-toggle="confirmation" data-placement="right">Confirmation on right</button>
       </div>
     </div>
@@ -70,10 +69,8 @@
     <div class="card mb-3">
       <div class="card-header">Singleton</div>
       <div class="card-body">
-        <button class="btn btn-primary" data-toggle="confirmation-singleton" data-singleton="true">Confirmation 1
-        </button>
-        <button class="btn btn-primary" data-toggle="confirmation-singleton" data-singleton="true">Confirmation 2
-        </button>
+        <button class="btn btn-primary" data-toggle="confirmation-singleton" data-singleton="true">Confirmation 1</button>
+        <button class="btn btn-primary" data-toggle="confirmation-singleton" data-singleton="true">Confirmation 2</button>
       </div>
     </div>
 
@@ -107,8 +104,19 @@
     <div class="card mb-3">
       <div class="card-header">Custom buttons</div>
       <div class="card-body">
-        <button class="btn btn-primary" id="custom-confirmation">Choose your transportation</button>
-        <button class="btn btn-primary" id="custom-confirmation-links">Share to</button>
+        <button class="btn btn-primary" data-toggle="confirmation-custom">Choose your transportation</button>
+        <button class="btn btn-primary" data-toggle="confirmation-custom-links">Share to</button>
+      </div>
+    </div>
+
+    <div class="card mb-3">
+      <div class="card-header">Override data attributes</div>
+      <div class="card-body">
+        <button class="btn btn-primary" data-toggle="confirmation-override">No overrides</button>
+        <button class="btn btn-primary" data-toggle="confirmation-override"
+                data-btn-ok-label="Ok" data-btn-ok-class="btn btn-sm btn-success">
+          Override OK
+        </button>
       </div>
     </div>
   </div>
@@ -126,25 +134,22 @@
 
   $('[data-toggle=confirmation]').confirmation({
     rootSelector: '[data-toggle=confirmation]',
-    container: 'body'
+    container: 'body',
   });
   $('[data-toggle=confirmation-singleton]').confirmation({
     rootSelector: '[data-toggle=confirmation-singleton]',
-    container: 'body'
   });
   $('[data-toggle=confirmation-popout]').confirmation({
     rootSelector: '[data-toggle=confirmation-popout]',
-    container: 'body'
   });
 
   $('#confirmation-delegate').confirmation({
-    selector: 'button'
+    selector: 'button',
   });
 
   $('[data-toggle=custom-confirmation-events]')
     .confirmation({
       rootSelector: '[data-toggle=custom-confirmation-events]',
-      container: 'body'
     })
     .on('mouseenter', function() {
       $(this).confirmation('show');
@@ -153,11 +158,16 @@
       alert('"myevent" triggered');
     });
 
-  $('#custom-confirmation').confirmation({
+  $('[data-toggle=confirmation-override]').confirmation({
+    rootSelector: '[data-toggle=confirmation-override]',
+    btnOkLabel: 'Continue',
+    btnCancelLabel: 'Cancel',
+  });
+
+  $('[data-toggle=confirmation-custom]').confirmation({
     rootSelector: '#custom-confirmation',
-    container: 'body',
     title: '',
-    onConfirm: function(value) {
+    onConfirm(value) {
       alert('You choosed ' + value);
     },
     buttons: [
@@ -166,35 +176,34 @@
         iconClass: 'material-icons mr-1',
         iconContent: 'directions_railway',
         label: 'Railway',
-        value: 'Railway'
+        value: 'Railway',
       },
       {
         class: 'btn btn-sm btn-primary',
         iconClass: 'material-icons mr-1',
         iconContent: 'directions_car',
         label: 'Car',
-        value: 'Car'
+        value: 'Car',
       },
       {
         class: 'btn btn-sm btn-warning',
         iconClass: 'material-icons mr-1',
         iconContent: 'directions_boat',
         label: 'Boat',
-        value: 'Boat'
+        value: 'Boat',
       },
       {
         class: 'btn btn-sm btn-secondary',
         iconClass: 'material-icons mr-1',
         iconContent: 'cancel',
         label: 'Cancel',
-        cancel: true
-      }
-    ]
+        cancel: true,
+      },
+    ],
   });
 
-  $('#custom-confirmation-links').confirmation({
+  $('[data-toggle=confirmation-custom-links]').confirmation({
     rootSelector: '#custom-confirmation-link',
-    container: 'body',
     title: '',
     buttons: [
       {
@@ -202,26 +211,26 @@
         iconClass: 'fa fa-twitter fa-lg mr-1',
         attr: {
           href: 'https://twitter.com',
-          target: '_blank'
-        }
+          target: '_blank',
+        },
       },
       {
         label: 'Facebook',
         iconClass: 'fa fa-facebook fa-lg mr-1',
         attr: {
           href: 'https://facebook.com',
-          target: '_blank'
-        }
+          target: '_blank',
+        },
       },
       {
         label: 'Pinterest',
         iconClass: 'fa fa-pinterest fa-lg mr-1',
         attr: {
           href: 'https://pinterest.com',
-          target: '_blank'
-        }
-      }
-    ]
+          target: '_blank',
+        },
+      },
+    ],
   });
 </script>
 

@@ -232,6 +232,31 @@ class Confirmation extends Popover {
   // Private
 
   /**
+   * Build configuration object
+   * Bootstrap standard is to give priority to JS config over data attributes,
+   * but for Confirmation we prefer data attributes
+   * @param config
+   * @return {*}
+   * @private
+   */
+  _getConfig(config) {
+    config = super._getConfig(config);
+
+    const dataAttributes = $(this.element).data();
+    Object.keys(dataAttributes)
+      .forEach((dataAttr) => {
+        if (dataAttr.indexOf('btn') !== 0) {
+          delete dataAttributes[dataAttr];
+        }
+      });
+
+    return {
+      ...config,
+      ...dataAttributes,
+    };
+  }
+
+  /**
    * Copy the value of `copyAttributes` on the config object
    * @private
    */

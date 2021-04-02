@@ -23,10 +23,7 @@
       "stroustrup"
     ],
     "no-param-reassign": [
-      "error",
-      {
-        "props": false
-      }
+      "off"
     ],
     "key-spacing": [
       "error",
