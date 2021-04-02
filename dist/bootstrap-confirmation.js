@@ -1,7 +1,7 @@
 /*!
- * Bootstrap Confirmation (v4.2.0)
+ * Bootstrap Confirmation (v4.2.1)
  * @copyright 2013 Nimit Suwannagate <ethaizone@hotmail.com>
- * @copyright 2014-2020 Damien "Mistic" Sorel <contact@git.strangeplanet.fr>
+ * @copyright 2014-2021 Damien "Mistic" Sorel <contact@git.strangeplanet.fr>
  * @licence Apache License, Version 2.0
  */
 (function (global, factory) {
@@ -47,7 +47,17 @@
   function _inheritsLoose(subClass, superClass) {
     subClass.prototype = Object.create(superClass.prototype);
     subClass.prototype.constructor = subClass;
-    subClass.__proto__ = superClass;
+
+    _setPrototypeOf(subClass, superClass);
+  }
+
+  function _setPrototypeOf(o, p) {
+    _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+      o.__proto__ = p;
+      return o;
+    };
+
+    return _setPrototypeOf(o, p);
   }
 
   if (typeof $.fn.popover === 'undefined' || $.fn.popover.Constructor.VERSION.split('.').shift() !== '4') {
@@ -63,7 +73,7 @@
    */
 
   var NAME = 'confirmation';
-  var VERSION = '4.2.0';
+  var VERSION = '4.2.1';
   var DATA_KEY = "bs." + NAME;
   var EVENT_KEY = "." + DATA_KEY;
   var JQUERY_NO_CONFLICT = $.fn[NAME];
@@ -160,45 +170,7 @@
   var Confirmation = /*#__PURE__*/function (_Popover) {
     _inheritsLoose(Confirmation, _Popover);
 
-    _createClass(Confirmation, null, [{
-      key: "VERSION",
-      // Getters
-      get: function get() {
-        return VERSION;
-      }
-    }, {
-      key: "Default",
-      get: function get() {
-        return Default;
-      }
-    }, {
-      key: "NAME",
-      get: function get() {
-        return NAME;
-      }
-    }, {
-      key: "DATA_KEY",
-      get: function get() {
-        return DATA_KEY;
-      }
-    }, {
-      key: "Event",
-      get: function get() {
-        return Event;
-      }
-    }, {
-      key: "EVENT_KEY",
-      get: function get() {
-        return EVENT_KEY;
-      }
-    }, {
-      key: "DefaultType",
-      get: function get() {
-        return DefaultType;
-      } // Constructor
-
-    }]);
-
+    // Constructor
     function Confirmation(element, config) {
       var _this;
 
@@ -286,6 +258,26 @@
       _Popover.prototype.hide.call(this, callback);
     } // Private
 
+    /**
+     * Build configuration object
+     * Bootstrap standard is to give priority to JS config over data attributes,
+     * but for Confirmation we prefer data attributes
+     * @param config
+     * @return {*}
+     * @private
+     */
+    ;
+
+    _proto._getConfig = function _getConfig(config) {
+      config = _Popover.prototype._getConfig.call(this, config);
+      var dataAttributes = $(this.element).data();
+      Object.keys(dataAttributes).forEach(function (dataAttr) {
+        if (dataAttr.indexOf('btn') !== 0) {
+          delete dataAttributes[dataAttr];
+        }
+      });
+      return _extends({}, config, dataAttributes);
+    }
     /**
      * Copy the value of `copyAttributes` on the config object
      * @private
@@ -549,6 +541,44 @@
         }
       });
     };
+
+    _createClass(Confirmation, null, [{
+      key: "VERSION",
+      get: // Getters
+      function get() {
+        return VERSION;
+      }
+    }, {
+      key: "Default",
+      get: function get() {
+        return Default;
+      }
+    }, {
+      key: "NAME",
+      get: function get() {
+        return NAME;
+      }
+    }, {
+      key: "DATA_KEY",
+      get: function get() {
+        return DATA_KEY;
+      }
+    }, {
+      key: "Event",
+      get: function get() {
+        return Event;
+      }
+    }, {
+      key: "EVENT_KEY",
+      get: function get() {
+        return EVENT_KEY;
+      }
+    }, {
+      key: "DefaultType",
+      get: function get() {
+        return DefaultType;
+      }
+    }]);
 
     return Confirmation;
   }(Popover);
